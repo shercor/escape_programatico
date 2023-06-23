@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PopUpMenu : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public bool isMenuOpen = false; // Variable que indica si el menú emergente est
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
@@ -27,7 +28,7 @@ public bool isMenuOpen = false; // Variable que indica si el menú emergente est
     private void TogglePopup()
     {
         popupUI.SetActive(!popupUI.activeSelf); // Activa o desactiva el menú emergente
-        isMenuOpen = true;
+        //isMenuOpen = true;
     }
 
     private void HidePopup()

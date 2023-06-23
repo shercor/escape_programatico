@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ClickController : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class ClickController : MonoBehaviour
         }
 
         if (isMenuOpen == false){ //Solo permite el movimiento si no hay ningún menú abierto
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 target.z = 0f;
