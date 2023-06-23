@@ -18,7 +18,6 @@ public class Popup : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Está el sistema de eventos activado?" + eventSystem.enabled);
         Debug.Log("Está el menú abierto?" + isMenuOpen);
         if (isMenuOpen && Input.GetMouseButtonDown(0))
         {

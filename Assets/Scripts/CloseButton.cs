@@ -17,7 +17,7 @@ public class CloseButton : MonoBehaviour
 
     private void ClosePopup()
     {
-        popUp.GetComponent<PopUpMenu>().isMenuOpen = false; //Señala que el menú no está abierto
+        //popUp.GetComponent<PopUpMenu>().isMenuOpen = false; //Señala que el menú no está abierto
         popupMenu.SetActive(false); // Desactiva el menú emergente al hacer clic en el botón "Cerrar"
     }
 }
