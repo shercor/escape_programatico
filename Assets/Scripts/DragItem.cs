@@ -9,6 +9,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //private Vector2 offset;
     public Image image;
     public TextMeshProUGUI T1,T2,T3;
+    public Button up, down;
     [HideInInspector] public Transform parentAfterDrag;
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -19,15 +20,11 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         transform.SetParent(transform.parent.parent);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
-        //T1.GetComponent<TextMeshProUGUI>().raycastTarget =false;
-        //T2.GetComponent<TextMeshProUGUI>().raycastTarget =false;
-        //T3.GetComponent<TextMeshProUGUI>().raycastTarget =false;
         T1.raycastTarget =false;
         T2.raycastTarget =false;
         T3.raycastTarget =false;
-        //transform.GetChild(0).raycastTarget = false;
-
-
+        //up.interactable =false;
+        //down.interactable =false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -41,22 +38,12 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         // Realiza acciones adicionales al soltar el objeto, si es necesario
         Debug.Log("End Drag");
-        //Destroy(transform.GetChild(0).gameObject);
-        //transform.GetChild(0).transform.SetParent(parentAfterDrag.GetChild(0));
         transform.SetParent(parentAfterDrag);
-        //transform.GetChild(0).transform.SetParent(transform);
-
-
-        //GameObject textoUIObjeto = new GameObject("TextoUI");
-       // textoUIObjeto.transform.SetParent(transform); // Establecer el objeto padre
-        //Text textoUIComponente = textoUIObjeto.AddComponent<Text>();
-        //textoUIComponente.text = "XD";
-        //textoUIComponente.transform.position = new Vector3(2,-2,1);
-
-        //transform.GetChild(0).gameObject.SetActive(true);
         image.raycastTarget = true;
         T1.raycastTarget =true;
         T2.raycastTarget =true;
         T3.raycastTarget =true;
+        //up.interactable =true;
+        //down.interactable =true;
     }
 }
