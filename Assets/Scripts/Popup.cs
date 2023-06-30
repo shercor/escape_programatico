@@ -18,7 +18,7 @@ public class Popup : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Está el menú abierto?" + isMenuOpen);
+        //Debug.Log("Está el menú abierto?" + isMenuOpen);
         if (isMenuOpen && Input.GetMouseButtonDown(0))
         {
             // Verificar si el clic se realiza dentro del menú emergente
