@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 5732821434553692367}
   m_Layer: 5
   m_Name: Bloque 3
-  m_TagString: bloque
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1614,6 +1614,7 @@ MonoBehaviour:
   T1: {fileID: 8061006862618517873}
   T2: {fileID: 4657165987391297740}
   T3: {fileID: 8253709500446481129}
+  type: print
 --- !u!1 &7658511481933505832
 GameObject:
   m_ObjectHideFlags: 0
