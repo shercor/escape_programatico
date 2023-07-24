@@ -11,7 +11,10 @@ public class BlockMessage : MonoBehaviour
     public TextMeshProUGUI T3;
     //public string type;
 
-    string[] C = new string[] {"[","]",",","(",")","'"," "};
+
+    string[] C = new string[] {",","[","]","(",")","'"," "};
+    string[] arr = new string[] {",","[","]","(",")","'"," "};
+    string[] num = new string[] {"1","2","3","4","5","6","7","8","8","9"};
     string[] alphabet = new string[]
     {
         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
@@ -20,10 +23,17 @@ public class BlockMessage : MonoBehaviour
     int i;
     int j;
     int k;
+    int ln;
+
+    // Strings para bloque ARREGLO
+    
     
     // Start is called before the first frame update
     void Start()
     {
+        if (this.tag == "arreglo"){
+            C = new string[] {","," "};
+        }
         i = 0;
         j = 0;
         k = 0;
@@ -47,6 +57,13 @@ public class BlockMessage : MonoBehaviour
             T1.text = C[i];
             T2.text = alphabet[j];
             T3.text = C[k];
+            //ln = alphabet.Length;
+        }
+        if (this.tag == "arreglo"){
+            T1.text = C[i];
+            T2.text = alphabet[j];
+            T3.text = num[k];
+            ln = num.Length;
         }
         
     }
@@ -74,7 +91,7 @@ public class BlockMessage : MonoBehaviour
     public void upRight(){
         //Debug.Log(C.Length);
         //Debug.Log(k);
-        if (k == C.Length - 1){
+        if (k == ln - 1){
             k = 0;
         }else{
             k = k +1;
@@ -105,7 +122,7 @@ public class BlockMessage : MonoBehaviour
         //Debug.Log(C.Length);
         Debug.Log(this.tag);
         if (k == 0){
-            k = C.Length - 1;
+            k = ln - 1;
         }else{
             k = k -1;
         }
