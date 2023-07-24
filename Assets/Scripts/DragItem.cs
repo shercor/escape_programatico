@@ -8,7 +8,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //private RectTransform rectTransform;
     //private Vector2 offset;
     public Image image;
-    public TextMeshProUGUI T1,T2,T3;
+    public TextMeshProUGUI T1,T2,T3,T4;
     public Button up, down;
     [HideInInspector] public Transform parentAfterDrag;
 
@@ -23,6 +23,10 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         T1.raycastTarget =false;
         T2.raycastTarget =false;
         T3.raycastTarget =false;
+        if (this.tag == "arreglo"){
+            T4.raycastTarget =false;
+        }
+        
         //up.interactable =false;
         //down.interactable =false;
     }
@@ -43,6 +47,9 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         T1.raycastTarget =true;
         T2.raycastTarget =true;
         T3.raycastTarget =true;
+        if (this.tag == "arreglo"){
+            T4.raycastTarget =true;
+        };
         //up.interactable =true;
         //down.interactable =true;
     }

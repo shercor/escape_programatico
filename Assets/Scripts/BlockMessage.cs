@@ -18,7 +18,7 @@ public class BlockMessage : MonoBehaviour
     string[] alphabet = new string[]
     {
         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-        "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "="
+        "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "
     };
     int i;
     int j;
@@ -58,11 +58,12 @@ public class BlockMessage : MonoBehaviour
             T2.text = alphabet[j];
             T3.text = C[k];
             //ln = alphabet.Length;
+            ln = C.Length;
         }
         if (this.tag == "arreglo"){
             T1.text = C[i];
             T2.text = alphabet[j];
-            T3.text = num[k];
+            T3.text = "[" + num[k] + "]";
             ln = num.Length;
         }
         

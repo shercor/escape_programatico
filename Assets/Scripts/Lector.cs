@@ -70,7 +70,7 @@ public class Lector : MonoBehaviour
                 Debug.Log("Frase de Linea " + j + ": " + lines[j]);
             }
             i = i + 1;
-            if (i == 9){
+            if (i == 6){
                 i = 0;
                 compilador(lines[j], tipo);
                 lines[j] = "";
