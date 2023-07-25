@@ -22,14 +22,12 @@ public class BlockRespawn : MonoBehaviour
     void ContarHijosDirectos(Transform objeto)
     {
         int cantidadHijosDirectos = objeto.childCount;
-        Debug.Log("Cantidad de hijos directos de " + objeto.name + ": " + cantidadHijosDirectos);
         if (objeto.tag == "slot"){
                 if (cantidadHijosDirectos == 0){
                     Spawnear(i);
                 } else {
-                    Debug.Log("El hijo numero " + i + " tiene tag: " + objeto.gameObject.transform.GetChild(0).tag);
+                    //Debug.Log("El hijo numero " + i + " tiene tag: " + objeto.gameObject.transform.GetChild(0).tag);
                     if (i == 5){
-                        //objeto.gameObject.transform.GetChild(0).gameObject.SetActive(false);
                         Destroy(objeto.gameObject.transform.GetChild(0).gameObject);
                     }
                 }

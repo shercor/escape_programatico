@@ -19,11 +19,67 @@ public class Lector : MonoBehaviour
     public TextMeshProUGUI T2;
     public TextMeshProUGUI T3;
     string[] lines = new string[6];
-    string[] A = new string[] {"AAA", "B", "334", "HOLA", "XD"};
+    string[] A = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
     string[] B = new string[] {"AAA", "B", "334", "HOLA", "XD"};
     string[] C = new string[] {"AAA", "B", "334", "HOLA", "XD"};
     string[] D = new string[] {"AAA", "B", "334", "HOLA", "XD"};
     string[] E = new string[] {"AAA", "B", "334", "HOLA", "XD"};
+    string[] F = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] G = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] H = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] I = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] J = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] K = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] L = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] M = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] N = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] O = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] P = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] Q = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] R = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] S = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] T = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] U = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] V = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOEEEEASDASD", "KYLIE"};
+    string[] W = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] X = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] Y = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] Z = new string[] {"AAAAAAAAA", "BBBB", "334333", "HOLAAAA", "XDDD","VacaAAA", "KAZULLLL", "KIARAEEE", "KHLOEEEEASDASD", "KYLIEEE"};
+    string[][] letras = new string[][]{};
+    string[] abecedario = new string[]
+    {
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+        "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+    };
+    string[][] abecedario2 = new string[][]
+    {
+        /* A */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //A
+        /* B */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //B
+        /* C */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //C
+        /* D */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //D
+        /* E */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //E
+        /* F */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //F
+        /* G */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //G
+        /* H */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //H
+        /* I */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //I
+        /* J */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //J
+        /* K */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //K
+        /* L */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //L
+        /* M */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //M
+        /* N */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //N
+        /* O */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //O
+        /* P */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //P
+        /* Q */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //Q
+        /* R */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //R
+        /* S */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //S
+        /* T */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //T
+        /* U */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //U
+        /* V */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //V
+        /* W */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOEEEEEEE", "KYLIE"}, //W
+        /* X */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //X
+        /* Y */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //Y
+        /* Z */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"} //Z
+    };
 
     int j = 0;
     string temp;
@@ -31,6 +87,8 @@ public class Lector : MonoBehaviour
     string tipo;
     void Start()
     {
+        string[][] letras = {A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z};
+        Debug.Log("El largo de letras es: " + letras.Length);
         i = 0;
     }
 
@@ -190,14 +248,38 @@ public class Lector : MonoBehaviour
 
     private void AnalisisComa(string substring){
         if (AnalisisCorchetes(substring).Item1 == true){
-            Debug.Log("Es un arreglo xD");
+            try{
+                Debug.Log(substring[0]);
+                Debug.Log("Z");
+                int num = Array.IndexOf(abecedario, "Z");
+            } catch {
+            }
+            Debug.Log("Veremos si el primer caracter de " + substring +  "es una letra");
+            string letter = substring[0].ToString();
+            bool aux = Array.Exists(abecedario, element => element.Equals(letter));
+            if (aux) {
+                Debug.Log("ES UNA LETRA");
+                Debug.Log(letter + " es un Arreglo");
+            } else {
+                Debug.Log("NO LO ES");
+                letter = substring[1].ToString();
+                Debug.Log(letter + " es un Arreglo");
+            }
+            //Debug.Log(substring[1] + " es un Arreglo");
+            
             int ind1 = AnalisisCorchetes(substring).Item2 + 1;
             Debug.Log("Primer corchete está en: " + AnalisisCorchetes(substring).Item2);
             Debug.Log("Segundo corchete está en: " + AnalisisCorchetes(substring).Item3);
 
             if (AnalisisCorchetes(substring).Item2 + 1 != AnalisisCorchetes(substring).Item3){
                 string aver = ObtenerSubstring(substring, AnalisisCorchetes(substring).Item2 + 1, AnalisisCorchetes(substring).Item3);
-                Debug.Log(aver);
+                int indice = int.Parse(aver);
+                int numLetra = Array.IndexOf(abecedario, letter);
+                Debug.Log("La letra " + letter + " está en la posición " + numLetra + " del abecedario");
+                Debug.Log(numLetra);
+                Debug.Log(indice);
+                Debug.Log(letras.Length);
+                Debug.Log("El contenido de la lista" + substring + "es: " + abecedario2[numLetra][indice]);
             } else {
                 Debug.Log("No hay nada dentro :()");
             }
