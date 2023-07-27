@@ -42,7 +42,7 @@ public class Lector : MonoBehaviour
     string[] U = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
     string[] V = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOEEEEASDASD", "KYLIE"};
     string[] W = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
-    string[] X = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
+    string[] X = new string[] {"Silencio", "Bullicioso", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
     string[] Y = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
     string[] Z = new string[] {"AAAAAAAAA", "BBBB", "334333", "HOLAAAA", "XDDD","VacaAAA", "KAZULLLL", "KIARAEEE", "KHLOEEEEASDASD", "KYLIEEE"};
     string[][] letras = new string[][]{};
@@ -76,11 +76,16 @@ public class Lector : MonoBehaviour
         /* U */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //U
         /* V */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //V
         /* W */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOEEEEEEE", "KYLIE"}, //W
-        /* X */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //X
-        /* Y */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //Y
+        /* X */ new string[] {"AAA", "Bullicioso", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"}, //X
+        /* Y */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARAaAWAW", "KHLOE", "KYLIE"}, //Y
         /* Z */ new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"} //Z
     };
-
+    private int mosca = 0;
+    private static int raton = 1;
+    private static int gato = 4;
+    private static int perro = 5;
+    string[] animales = {"mosca", "rata", "gato", "perro", "pez"};
+    int[] animalesValores = {0, 2, 4, 5, 0}; 
     int j = 0;
     string temp;
     private string code = "Debug.Log(\"Hola xDXDXD\");";
@@ -173,18 +178,35 @@ public class Lector : MonoBehaviour
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
             
+        } else if (tipo == "sumar"){
+            mensaje = RemoveStringStart(mensaje, "sumar(");
+            if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                mensaje = RemoveStringEnd(mensaje, ")");
+                sumar(mensaje);
+            } else {
+                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+            }
+        } else if (tipo == "pro"){
+            mensaje = RemoveStringStart(mensaje, "pro(");
+            if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                mensaje = RemoveStringEnd(mensaje, ")");
+                pro(mensaje);
+            } else {
+                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+            }
         }
+        
         else {
             Debug.Log("No tenemos la orden de printear");
         }
     }
 
     private void blockPrint(string mensaje){
-        Debug.Log("Debo printear algo");
+        //Debug.Log("Debo printear algo");
         Debug.Log("El mensaje es: " + mensaje);
         string res = string.Join(" ", A);
-        Debug.Log(res);
-        Debug.Log(A[1]);
+        //Debug.Log(res);
+        //Debug.Log(A[1]);
         Debug.Log(AnalisisCorchetes(mensaje));
         SeparadorComa(mensaje);
     }
@@ -301,5 +323,134 @@ public class Lector : MonoBehaviour
         int longitud = indiceFin - indiceInicio;
         return cadena.Substring(indiceInicio, longitud);
     }
+
+    /*------------------------------------------------------------- Funciones auxiliares para la funcionalidad de SUMAR -------------------------------------------------------------*/
+
+    private void sumar(string mensaje){
+        Debug.Log("Se va a realizar una suma para el mensaje: " + mensaje);
+
+        if (contarComas(mensaje, 1)){
+            Debug.Log("Hay una sola coma, se puede realizar la sumna");
+            string str1, str2;
+            str1 = EliminarEspacios(SepararComas(mensaje).Item1);
+            str2 = EliminarEspacios(SepararComas(mensaje).Item2);
+            bool aux1 = Array.Exists(animales, element => element.Equals(str1));
+            bool aux2 = Array.Exists(animales, element => element.Equals(str2));
+            if (aux1 && aux2){
+                Debug.Log("Las variables son correctas");
+                int pos1 = Array.IndexOf(animales, str1);
+                int pos2 = Array.IndexOf(animales, str2);
+                int suma = animalesValores[pos1] + animalesValores[pos2];
+                Debug.Log("La suma de " + str1 + " y de "+ str2 + " es igual a " +suma);
+
+            } else {
+                Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
+            }
+
+
+        } else {
+            Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
+        }
+    }
+
+    private bool contarComas(string texto, int num){
+        int contador = 0;
+        foreach (char caracter in texto)
+        {
+            if (caracter == ',')
+            {
+                contador++;
+            }
+        }
+        if (contador == num){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private (string, string) SepararComas(string mensaje){
+        string[] substrings = mensaje.Split(',');
+        string str1 ="Hola";
+        string str2 ="Chao";
+        int i = 0;
+        foreach (string substring in substrings)
+        {
+            //Debug.Log(substring);
+            //AnalisisComa(substring);
+            //Console.WriteLine(substring.Trim());
+            if (i == 0){
+                str1 = substring;
+                i = i + 1;
+            } else {
+                str2 = substring;
+            }
+        }
+        return (str1, str2);
+    }
+
+    static string EliminarEspacios(string texto)
+    {
+        return texto.Replace(" ", "");
+    }
+
+    /*------------------------------------------------------------- Funciones auxiliares para la funcionalidad de PRODUCTO -------------------------------------------------------------*/
+
+    private void pro(string mensaje){
+        Debug.Log("Se va a realizar una produto para el mensaje: " + mensaje);
+
+        if (contarComas(mensaje, 2)){
+            Debug.Log("Hay 2 comas, se puede realizar el producto y asignación");
+            string str1, str2, str3;
+            str1 = EliminarEspacios(SepararComas2(mensaje).Item1);
+            str2 = EliminarEspacios(SepararComas2(mensaje).Item2);
+            str3 = EliminarEspacios(SepararComas2(mensaje).Item3);
+            bool aux1;
+            if (str1 == "pez"){
+                aux1 = true;
+            } else {
+                aux1 = false;
+            }
+            bool aux2 = Array.Exists(animales, element => element.Equals(str2));
+            bool aux3 = Array.Exists(animales, element => element.Equals(str3));
+            if (aux1 && aux2 && aux3){
+                Debug.Log("Las variables son correctas");
+                int pos2 = Array.IndexOf(animales, str2);
+                int pos3 = Array.IndexOf(animales, str3);
+                animalesValores[4] = animalesValores[pos2] * animalesValores[pos3];
+                Debug.Log("El nuevo valor de PEZ es " + animalesValores[4]);
+
+            } else {
+                Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
+            }
+
+
+        } else {
+            Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
+        }
+    }
+
+    private (string, string, string) SepararComas2(string mensaje){
+        string[] substrings = mensaje.Split(',');
+        string str1 ="Hola";
+        string str2 ="Chao";
+        string str3 ="XD";
+        int i = 0;
+        foreach (string substring in substrings)
+        {
+            if (i == 0){
+                str1 = substring;
+                i = i + 1;
+            } else if (i == 1) {
+                str2 = substring;
+                i = i + 1;
+            } else {
+                str3 = substring;
+            }
+        }
+        return (str1, str2, str3);
+    }
+
+
 
 }

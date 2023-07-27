@@ -9,6 +9,10 @@ TagManager:
   - print
   - bloque
   - arreglo
+  - slot
+  - sumar
+  - animal
+  - pro
   layers:
   - Default
   - TransparentFX

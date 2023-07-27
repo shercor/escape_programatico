@@ -3,10 +3,13 @@ using UnityEngine;
 public class BlockRespawn : MonoBehaviour
 {
     int i = 0;
-    string[] tipos = new string[] {"print", "bloque", "arreglo", "print", "bloque", "arreglo"};
+    string[] tipos = new string[] {"print", "bloque", "arreglo", "sumar", "animal", "arreglo"};
     public GameObject print;
     public GameObject bloque;
     public GameObject arreglo;
+    public GameObject sumar;
+    public GameObject animal;
+    public GameObject pro;
     void Start()
     {
         // Comenzamos el conteo de los hijos directos del objeto raíz
@@ -47,9 +50,9 @@ public class BlockRespawn : MonoBehaviour
 
     private void Spawnear(int n){
         if (n == 0){
-            if (print != null)
+            if (pro != null)
             {
-                GameObject nuevoHijo = Instantiate(print, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(pro, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -72,6 +75,28 @@ public class BlockRespawn : MonoBehaviour
             if (arreglo != null)
             {
                 GameObject nuevoHijo = Instantiate(arreglo, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 3){
+            if (sumar != null)
+            {
+                GameObject nuevoHijo = Instantiate(sumar, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 4){
+            if (animal != null)
+            {
+                GameObject nuevoHijo = Instantiate(animal, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else

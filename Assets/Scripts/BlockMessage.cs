@@ -13,8 +13,11 @@ public class BlockMessage : MonoBehaviour
 
 
     string[] C = new string[] {",","[","]","(",")","'"," "};
+    string[] C1 = new string[] {" ", " "};
+    string[] C2 = new string[] {")",","};
     string[] arr = new string[] {",","[","]","(",")","'"," "};
     string[] num = new string[] {"1","2","3","4","5","6","7","8","8","9"};
+    string[] animales = {"mosca","rata", "gato", "perro", "pez"}; 
     string[] alphabet = new string[]
     {
         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
@@ -23,7 +26,9 @@ public class BlockMessage : MonoBehaviour
     int i;
     int j;
     int k;
-    int ln;
+    int len1;
+    int len2;
+    int len3;
 
     // Strings para bloque ARREGLO
     
@@ -57,14 +62,26 @@ public class BlockMessage : MonoBehaviour
             T1.text = C[i];
             T2.text = alphabet[j];
             T3.text = C[k];
-            //ln = alphabet.Length;
-            ln = C.Length;
+            //len3 = alphabet.Length;
+            len3 = C.Length;
+            len2 = alphabet.Length;
+            len1 = C.Length;
         }
         if (this.tag == "arreglo"){
             T1.text = C[i];
             T2.text = alphabet[j];
             T3.text = "[" + num[k] + "]";
-            ln = num.Length;
+            len3 = num.Length;
+            len2 = alphabet.Length;
+            len1 = C.Length;
+        }
+        if (this.tag == "animal"){
+            T1.text = C1[i];
+            T2.text = animales[j];
+            T3.text = C2[k];
+            len1 = C1.Length;
+            len3 = C2.Length;
+            len2 = animales.Length;
         }
         
     }
@@ -72,7 +89,7 @@ public class BlockMessage : MonoBehaviour
     public void upLeft(){
         //Debug.Log(C.Length);
         //Debug.Log(i);
-        if (i == C.Length - 1){
+        if (i == len1 - 1){
             i = 0;
         }else{
             i = i +1;
@@ -82,7 +99,7 @@ public class BlockMessage : MonoBehaviour
     public void upCenter(){
         //Debug.Log(alphabet.Length);
         //Debug.Log(j);
-        if (j == alphabet.Length - 1){
+        if (j == len2 - 1){
             j = 0;
         }else{
             j = j +1;
@@ -92,7 +109,7 @@ public class BlockMessage : MonoBehaviour
     public void upRight(){
         //Debug.Log(C.Length);
         //Debug.Log(k);
-        if (k == ln - 1){
+        if (k == len3 - 1){
             k = 0;
         }else{
             k = k +1;
@@ -103,7 +120,7 @@ public class BlockMessage : MonoBehaviour
         //Debug.Log(C.Length);
         //Debug.Log(i);
         if (i == 0){
-            i = C.Length - 1;
+            i = len1 - 1;
         }else{
             i = i -1;
         }
@@ -113,7 +130,7 @@ public class BlockMessage : MonoBehaviour
         //Debug.Log(alphabet.Length);
         //Debug.Log(i);
         if (j == 0){
-            j = alphabet.Length - 1;
+            j = len2 - 1;
         }else{
             j = j -1;
         }
@@ -123,7 +140,7 @@ public class BlockMessage : MonoBehaviour
         //Debug.Log(C.Length);
         Debug.Log(this.tag);
         if (k == 0){
-            k = ln - 1;
+            k = len3 - 1;
         }else{
             k = k -1;
         }
