@@ -10,6 +10,8 @@ public class BlockRespawn : MonoBehaviour
     public GameObject sumar;
     public GameObject animal;
     public GameObject pro;
+    public GameObject llave;
+    public GameObject color;
     void Start()
     {
         // Comenzamos el conteo de los hijos directos del objeto raíz
@@ -28,9 +30,11 @@ public class BlockRespawn : MonoBehaviour
         if (objeto.tag == "slot"){
                 if (cantidadHijosDirectos == 0){
                     Spawnear(i);
+                } else if (cantidadHijosDirectos == 2){
+                    Destroy(objeto.gameObject.transform.GetChild(0).gameObject);
                 } else {
                     //Debug.Log("El hijo numero " + i + " tiene tag: " + objeto.gameObject.transform.GetChild(0).tag);
-                    if (i == 5){
+                    if (i == 10){
                         Destroy(objeto.gameObject.transform.GetChild(0).gameObject);
                     }
                 }
@@ -50,9 +54,9 @@ public class BlockRespawn : MonoBehaviour
 
     private void Spawnear(int n){
         if (n == 0){
-            if (pro != null)
+            if (print != null)
             {
-                GameObject nuevoHijo = Instantiate(pro, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(print, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -72,17 +76,6 @@ public class BlockRespawn : MonoBehaviour
             }
         }
         if (n == 2){
-            if (arreglo != null)
-            {
-                GameObject nuevoHijo = Instantiate(arreglo, transform.position, Quaternion.identity);
-                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
-            }
-            else
-            {
-                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
-            }
-        }
-        if (n == 3){
             if (sumar != null)
             {
                 GameObject nuevoHijo = Instantiate(sumar, transform.position, Quaternion.identity);
@@ -93,10 +86,43 @@ public class BlockRespawn : MonoBehaviour
                 Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
-        if (n == 4){
+        if (n == 3){
             if (animal != null)
             {
                 GameObject nuevoHijo = Instantiate(animal, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 4){
+            if (pro != null)
+            {
+                GameObject nuevoHijo = Instantiate(pro, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 5){
+            if (color != null)
+            {
+                GameObject nuevoHijo = Instantiate(color, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 6){
+            if (llave != null)
+            {
+                GameObject nuevoHijo = Instantiate(llave, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else

@@ -13,6 +13,9 @@ TagManager:
   - sumar
   - animal
   - pro
+  - llave
+  - color
+  - dispositivos
   layers:
   - Default
   - TransparentFX

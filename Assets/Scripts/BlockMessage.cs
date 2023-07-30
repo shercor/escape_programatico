@@ -18,6 +18,7 @@ public class BlockMessage : MonoBehaviour
     string[] arr = new string[] {",","[","]","(",")","'"," "};
     string[] num = new string[] {"1","2","3","4","5","6","7","8","8","9"};
     string[] animales = {"mosca","rata", "gato", "perro", "pez"}; 
+    string[] colores = {"azul","rojo","verde"}; 
     string[] alphabet = new string[]
     {
         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
@@ -82,6 +83,14 @@ public class BlockMessage : MonoBehaviour
             len1 = C1.Length;
             len3 = C2.Length;
             len2 = animales.Length;
+        }
+        if (this.tag == "color"){
+            T1.text = C1[i];
+            T2.text = colores[j];
+            T3.text = C2[k];
+            len1 = C1.Length;
+            len3 = C2.Length;
+            len2 = colores.Length;
         }
         
     }

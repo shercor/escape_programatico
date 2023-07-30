@@ -18,6 +18,7 @@ public class Lector : MonoBehaviour
     public TextMeshProUGUI T1;
     public TextMeshProUGUI T2;
     public TextMeshProUGUI T3;
+    private GameObject controlador;
     string[] lines = new string[6];
     string[] A = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
     string[] B = new string[] {"AAA", "B", "334", "HOLA", "XD"};
@@ -85,13 +86,19 @@ public class Lector : MonoBehaviour
     private static int gato = 4;
     private static int perro = 5;
     string[] animales = {"mosca", "rata", "gato", "perro", "pez"};
-    int[] animalesValores = {0, 2, 4, 5, 0}; 
+    int[] animalesValores = {0, 2, 4, 5, 0};
+    string[] dispositivos = {"rojo", "azul", "verde"};
+    int[] dispositivosClaves = {5, 160, 1000};
+
     int j = 0;
     string temp;
     private string code = "Debug.Log(\"Hola xDXDXD\");";
     string tipo;
+    
+
     void Start()
     {
+        controlador = GameObject.FindWithTag("dispositivos");
         string[][] letras = {A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z};
         Debug.Log("El largo de letras es: " + letras.Length);
         i = 0;
@@ -191,6 +198,14 @@ public class Lector : MonoBehaviour
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
                 pro(mensaje);
+            } else {
+                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+            }
+        } else if (tipo == "llave"){
+            mensaje = RemoveStringStart(mensaje, "llave(");
+            if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                mensaje = RemoveStringEnd(mensaje, ")");
+                llave(mensaje);
             } else {
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
@@ -451,6 +466,55 @@ public class Lector : MonoBehaviour
         return (str1, str2, str3);
     }
 
+    /*------------------------------------------------------------- Funciones auxiliares para la funcionalidad de LLAVE -------------------------------------------------------------*/
+
+    private void llave(string mensaje){
+        Debug.Log("Se va a evaluar si la siguiente expresión abre un dispositivo: " + mensaje);
+
+        if (contarComas(mensaje, 1)){
+            Debug.Log("Hay 1 comas, se puede verificar si hay una llave y un ");
+            string str1, str2, str3;
+            str1 = EliminarEspacios(SepararComas(mensaje).Item1);
+            str2 = EliminarEspacios(SepararComas(mensaje).Item2);
+            //bool aux1;
+            bool aux1 = Array.Exists(dispositivos, element => element.Equals(str1));
+            bool aux2 = Array.Exists(animales, element => element.Equals(str2));
+            
+            Debug.Log(str1 + aux1);
+            Debug.Log(str2 + aux2);
+            if (aux1 && aux2){
+                Debug.Log("Las variables son correctas");
+                
+                int pos1 = Array.IndexOf(dispositivos, str1);
+                int pos2 = Array.IndexOf(animales, str2);
+                int key = animalesValores[pos2];
+                bool check1 = Array.Exists(dispositivosClaves, element => element.Equals(key));
+                Debug.Log("Se introdujo la clave " + key + " a " + str1);
+                Debug.Log(check1);
+                Debug.Log(dispositivosClaves[0]);
+                if (check1) {
+                    int pos3 = Array.IndexOf(dispositivosClaves, key);
+                    if (pos1 == pos3){
+                        Debug.Log("Contraseña correcta, la clave de " + dispositivos[pos3] + " era " + key);
+                        Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
+                        controlador.GetComponent<Dispositivos>().abrir(pos1);
+                        Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
+                    }
+                    else {
+                        Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
+                    }
+                } else {
+                    Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
+                }
+                
+
+            } else {
+                Debug.Log("DENEGADO: No se ha introducido una llave válida");
+            }
 
 
+        } else {
+            Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
+        }
+    }
 }
