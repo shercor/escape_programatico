@@ -12,6 +12,8 @@ public class BlockRespawn : MonoBehaviour
     public GameObject pro;
     public GameObject llave;
     public GameObject color;
+    public GameObject restar;
+    public GameObject var;
     void Start()
     {
         // Comenzamos el conteo de los hijos directos del objeto raíz
@@ -54,9 +56,9 @@ public class BlockRespawn : MonoBehaviour
 
     private void Spawnear(int n){
         if (n == 0){
-            if (print != null)
+            if (sumar != null)
             {
-                GameObject nuevoHijo = Instantiate(print, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(sumar, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -65,9 +67,9 @@ public class BlockRespawn : MonoBehaviour
             }
         }
         if (n == 1){
-            if (bloque != null)
+            if (var != null)
             {
-                GameObject nuevoHijo = Instantiate(bloque, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(var, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -76,9 +78,9 @@ public class BlockRespawn : MonoBehaviour
             }
         }
         if (n == 2){
-            if (sumar != null)
+            if (restar != null)
             {
-                GameObject nuevoHijo = Instantiate(sumar, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(restar, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else

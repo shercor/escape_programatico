@@ -94,13 +94,13 @@ public class Lector : MonoBehaviour
     string temp;
     private string code = "Debug.Log(\"Hola xDXDXD\");";
     string tipo;
+    bool vacio = false;
     
 
     void Start()
     {
         controlador = GameObject.FindWithTag("dispositivos");
         string[][] letras = {A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z};
-        Debug.Log("El largo de letras es: " + letras.Length);
         i = 0;
     }
 
@@ -112,18 +112,21 @@ public class Lector : MonoBehaviour
 
     public void Contador()
     {
-        Debug.Log(grid.gameObject.transform.childCount);
+        //Debug.Log(grid.gameObject.transform.childCount);
         foreach (Transform child in grid.gameObject.transform)
         {
             if (i<9 && child.childCount != 0){
+                Debug.Log(i);
                 if (i == 0){
+                    
                     tipo = child.gameObject.transform.GetChild(0).tag;
+                    Debug.Log(tipo);
                 }
-                Debug.Log(child.name);
+                //Debug.Log(child.name);
                 
-                Debug.Log("El tag del bloque es: " + child.gameObject.transform.GetChild(0).tag);
+                //Debug.Log("El tag del bloque es: " + child.gameObject.transform.GetChild(0).tag);
                 
-                Debug.Log("Bloque: " + i);
+                //Debug.Log("Bloque: " + i);
                 //Debug.Log(child.gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).name);
                 //Debug.Log(child.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).name);
                 //Debug.Log(child.gameObject.transform.GetChild(0).gameObject.transform.GetChild(2).name);
@@ -135,18 +138,40 @@ public class Lector : MonoBehaviour
                 //Debug.Log(T3.text);
                 //Debug.Log("" + T1.text+ "" + T2.text+ "" + T3.text);
                 temp = T1.text + T2.text + T3.text;
-                Debug.Log(temp);
+                //Debug.Log(temp);
                 lines[j] = lines[j] + temp;
-                Debug.Log("Frase de Linea " + j + ": " + lines[j]);
+                //Debug.Log("Frase de Linea " + j + ": " + lines[j]);
+            } else if (i == 0 && child.childCount == 0){
+                //
+                i = 0;
+                j = 0;
+                return; //SE CORTA APENAS DETECTA UNA LINEA VACÍA, ARREGLAR
+                //print("-");
+                //i = 9;
+                vacio = true;
             }
             i = i + 1;
-            if (i == 6){
+            if (i == 6 && vacio == false){
                 i = 0;
+                Debug.Log(j + tipo);
                 compilador(lines[j], tipo);
+                //Debug.Log("Siguiente");
                 lines[j] = "";
-                break;  
-                j = j + 1;     
+                //break;  
+                j = j + 1;
+                Debug.Log(j);     
                 //ExecuteCode(code);
+            }
+            if (vacio == true){
+                //Debug.Log("Entro al vacio");
+                lines[j] = "";
+                j = j + 1;
+                i = 0;
+            }
+
+            if (j ==5){
+                j = 0;
+                return;
             }
             //i = i + 1;
             // Acceder a cada hijo y realizar las operaciones necesarias
@@ -209,6 +234,26 @@ public class Lector : MonoBehaviour
             } else {
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
+        } else if (tipo == "variable"){
+            if (!mensaje.StartsWith("mosca=")){
+                //Debug.Log("Error de sintaxis. Intenta otra vez.");
+                return;
+            }
+            mensaje = EliminarEspacios(mensaje);
+            //Debug.Log(mensaje);
+            mensaje = RemoveStringStart(mensaje, "mosca=");
+            //Debug.Log(mensaje);
+            //Debug.Log(CompareBeginOfStringsWithSubstring(mensaje, "restar"));
+            if (CompareBeginOfStringsWithSubstring(mensaje, "restar")){
+            }
+            mensaje = RemoveStringStart(mensaje, "restar(");
+            if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                mensaje = RemoveStringEnd(mensaje, ")");
+                //Debug.Log("Se van a restar: " + mensaje);
+                restar(mensaje);
+            } else {
+                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+            }
         }
         
         else {
@@ -266,6 +311,11 @@ public class Lector : MonoBehaviour
         return true;
     }
 
+    public bool CompareBeginOfStringsWithSubstring(string strings, string substring)
+    {
+        return strings.StartsWith(substring);
+    }
+
     //Verifica si un String termina con un Substring dado
     public bool CompareEndOfStringsWithSubstring2(string str, string substring)
     {
@@ -277,7 +327,7 @@ public class Lector : MonoBehaviour
         string[] substrings = inputString.Split(',');
         foreach (string substring in substrings)
         {
-            Debug.Log(substring);
+            //Debug.Log(substring);
             AnalisisComa(substring);
             Console.WriteLine(substring.Trim());
         }
@@ -286,36 +336,35 @@ public class Lector : MonoBehaviour
     private void AnalisisComa(string substring){
         if (AnalisisCorchetes(substring).Item1 == true){
             try{
-                Debug.Log(substring[0]);
-                Debug.Log("Z");
+                //Debug.Log(substring[0]);
                 int num = Array.IndexOf(abecedario, "Z");
             } catch {
             }
-            Debug.Log("Veremos si el primer caracter de " + substring +  "es una letra");
+            //Debug.Log("Veremos si el primer caracter de " + substring +  "es una letra");
             string letter = substring[0].ToString();
             bool aux = Array.Exists(abecedario, element => element.Equals(letter));
             if (aux) {
-                Debug.Log("ES UNA LETRA");
-                Debug.Log(letter + " es un Arreglo");
+                //Debug.Log("ES UNA LETRA");
+                //Debug.Log(letter + " es un Arreglo");
             } else {
-                Debug.Log("NO LO ES");
+                //Debug.Log("NO LO ES");
                 letter = substring[1].ToString();
-                Debug.Log(letter + " es un Arreglo");
+                //Debug.Log(letter + " es un Arreglo");
             }
             //Debug.Log(substring[1] + " es un Arreglo");
             
             int ind1 = AnalisisCorchetes(substring).Item2 + 1;
-            Debug.Log("Primer corchete está en: " + AnalisisCorchetes(substring).Item2);
-            Debug.Log("Segundo corchete está en: " + AnalisisCorchetes(substring).Item3);
+            //Debug.Log("Primer corchete está en: " + AnalisisCorchetes(substring).Item2);
+            //Debug.Log("Segundo corchete está en: " + AnalisisCorchetes(substring).Item3);
 
             if (AnalisisCorchetes(substring).Item2 + 1 != AnalisisCorchetes(substring).Item3){
                 string aver = ObtenerSubstring(substring, AnalisisCorchetes(substring).Item2 + 1, AnalisisCorchetes(substring).Item3);
                 int indice = int.Parse(aver);
                 int numLetra = Array.IndexOf(abecedario, letter);
-                Debug.Log("La letra " + letter + " está en la posición " + numLetra + " del abecedario");
-                Debug.Log(numLetra);
-                Debug.Log(indice);
-                Debug.Log(letras.Length);
+                //Debug.Log("La letra " + letter + " está en la posición " + numLetra + " del abecedario");
+                //Debug.Log(numLetra);
+                //Debug.Log(indice);
+                //Debug.Log(letras.Length);
                 Debug.Log("El contenido de la lista" + substring + "es: " + abecedario2[numLetra][indice]);
             } else {
                 Debug.Log("No hay nada dentro :()");
@@ -342,17 +391,16 @@ public class Lector : MonoBehaviour
     /*------------------------------------------------------------- Funciones auxiliares para la funcionalidad de SUMAR -------------------------------------------------------------*/
 
     private void sumar(string mensaje){
-        Debug.Log("Se va a realizar una suma para el mensaje: " + mensaje);
 
         if (contarComas(mensaje, 1)){
-            Debug.Log("Hay una sola coma, se puede realizar la sumna");
+            //Debug.Log("Hay una sola coma, se puede realizar la sumna");
             string str1, str2;
             str1 = EliminarEspacios(SepararComas(mensaje).Item1);
             str2 = EliminarEspacios(SepararComas(mensaje).Item2);
             bool aux1 = Array.Exists(animales, element => element.Equals(str1));
             bool aux2 = Array.Exists(animales, element => element.Equals(str2));
             if (aux1 && aux2){
-                Debug.Log("Las variables son correctas");
+                //Debug.Log("Las variables son correctas");
                 int pos1 = Array.IndexOf(animales, str1);
                 int pos2 = Array.IndexOf(animales, str2);
                 int suma = animalesValores[pos1] + animalesValores[pos2];
@@ -367,6 +415,10 @@ public class Lector : MonoBehaviour
             Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
         }
     }
+
+    
+
+    
 
     private bool contarComas(string texto, int num){
         int contador = 0;
@@ -412,10 +464,9 @@ public class Lector : MonoBehaviour
     /*------------------------------------------------------------- Funciones auxiliares para la funcionalidad de PRODUCTO -------------------------------------------------------------*/
 
     private void pro(string mensaje){
-        Debug.Log("Se va a realizar una produto para el mensaje: " + mensaje);
 
         if (contarComas(mensaje, 2)){
-            Debug.Log("Hay 2 comas, se puede realizar el producto y asignación");
+            //Debug.Log("Hay 2 comas, se puede realizar el producto y asignación");
             string str1, str2, str3;
             str1 = EliminarEspacios(SepararComas2(mensaje).Item1);
             str2 = EliminarEspacios(SepararComas2(mensaje).Item2);
@@ -429,7 +480,6 @@ public class Lector : MonoBehaviour
             bool aux2 = Array.Exists(animales, element => element.Equals(str2));
             bool aux3 = Array.Exists(animales, element => element.Equals(str3));
             if (aux1 && aux2 && aux3){
-                Debug.Log("Las variables son correctas");
                 int pos2 = Array.IndexOf(animales, str2);
                 int pos3 = Array.IndexOf(animales, str3);
                 animalesValores[4] = animalesValores[pos2] * animalesValores[pos3];
@@ -469,10 +519,10 @@ public class Lector : MonoBehaviour
     /*------------------------------------------------------------- Funciones auxiliares para la funcionalidad de LLAVE -------------------------------------------------------------*/
 
     private void llave(string mensaje){
-        Debug.Log("Se va a evaluar si la siguiente expresión abre un dispositivo: " + mensaje);
+        //Debug.Log("Se va a evaluar si la siguiente expresión abre un dispositivo: " + mensaje);
 
         if (contarComas(mensaje, 1)){
-            Debug.Log("Hay 1 comas, se puede verificar si hay una llave y un ");
+            //Debug.Log("Hay 1 comas, se puede verificar si hay una llave y un ");
             string str1, str2, str3;
             str1 = EliminarEspacios(SepararComas(mensaje).Item1);
             str2 = EliminarEspacios(SepararComas(mensaje).Item2);
@@ -480,23 +530,22 @@ public class Lector : MonoBehaviour
             bool aux1 = Array.Exists(dispositivos, element => element.Equals(str1));
             bool aux2 = Array.Exists(animales, element => element.Equals(str2));
             
-            Debug.Log(str1 + aux1);
-            Debug.Log(str2 + aux2);
+            //Debug.Log(str1 + aux1);
+            //Debug.Log(str2 + aux2);
             if (aux1 && aux2){
-                Debug.Log("Las variables son correctas");
                 
                 int pos1 = Array.IndexOf(dispositivos, str1);
                 int pos2 = Array.IndexOf(animales, str2);
                 int key = animalesValores[pos2];
                 bool check1 = Array.Exists(dispositivosClaves, element => element.Equals(key));
-                Debug.Log("Se introdujo la clave " + key + " a " + str1);
-                Debug.Log(check1);
-                Debug.Log(dispositivosClaves[0]);
+                //Debug.Log("Se introdujo la clave " + key + " a " + str1);
+                //Debug.Log(check1);
+                //Debug.Log(dispositivosClaves[0]);
                 if (check1) {
                     int pos3 = Array.IndexOf(dispositivosClaves, key);
                     if (pos1 == pos3){
                         Debug.Log("Contraseña correcta, la clave de " + dispositivos[pos3] + " era " + key);
-                        Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
+                        //Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
                         controlador.GetComponent<Dispositivos>().abrir(pos1);
                         Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
                     }
@@ -510,6 +559,35 @@ public class Lector : MonoBehaviour
 
             } else {
                 Debug.Log("DENEGADO: No se ha introducido una llave válida");
+            }
+
+
+        } else {
+            Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
+        }
+    }
+
+/*------------------------------------------------------------- Funciones auxiliares para la funcionalidad de LLAVE -------------------------------------------------------------*/
+
+    private void restar(string mensaje){
+
+        if (contarComas(mensaje, 1)){
+            //Debug.Log("Hay una sola coma, se puede realizar la sumna");
+            string str1, str2;
+            str1 = EliminarEspacios(SepararComas(mensaje).Item1);
+            str2 = EliminarEspacios(SepararComas(mensaje).Item2);
+            bool aux1 = Array.Exists(animales, element => element.Equals(str1));
+            bool aux2 = Array.Exists(animales, element => element.Equals(str2));
+            if (aux1 && aux2){
+                //Debug.Log("Las variables son correctas");
+                int pos1 = Array.IndexOf(animales, str1);
+                int pos2 = Array.IndexOf(animales, str2);
+                int resta = animalesValores[pos1] - animalesValores[pos2];
+                animalesValores[0] = resta;
+                Debug.Log("La resta de " + str1 + " y de "+ str2 + " es igual a " +resta);
+
+            } else {
+                Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
             }
 
 

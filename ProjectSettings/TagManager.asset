@@ -16,6 +16,8 @@ TagManager:
   - llave
   - color
   - dispositivos
+  - restar
+  - variable
   layers:
   - Default
   - TransparentFX

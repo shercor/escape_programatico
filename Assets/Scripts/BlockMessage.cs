@@ -147,7 +147,6 @@ public class BlockMessage : MonoBehaviour
 
     public void downRight(){
         //Debug.Log(C.Length);
-        Debug.Log(this.tag);
         if (k == 0){
             k = len3 - 1;
         }else{
