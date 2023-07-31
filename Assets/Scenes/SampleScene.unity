@@ -2830,6 +2830,8 @@ MonoBehaviour:
   pro: {fileID: 6913654646858902508, guid: 5793958017205494f8c28ac808571917, type: 3}
   llave: {fileID: 6913654646858902508, guid: 9112f63b619f6ed48a6e3cd4f9e83a72, type: 3}
   color: {fileID: 6913654646858902508, guid: a8bc0bc6bf10aee49bccaed96506e4e2, type: 3}
+  restar: {fileID: 6913654646858902508, guid: 957a16c0ee44b7c4494e5edb2d3e4915, type: 3}
+  var: {fileID: 6913654646858902508, guid: 3fe618fad9dc4024587df7e1403e9fcb, type: 3}
 --- !u!224 &1191200354 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5768108580989073842, guid: 5e8f0f1fc6e86e340b6c7a55a2276935, type: 3}
