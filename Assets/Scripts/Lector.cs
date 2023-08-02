@@ -18,6 +18,7 @@ public class Lector : MonoBehaviour
     public TextMeshProUGUI T1;
     public TextMeshProUGUI T2;
     public TextMeshProUGUI T3;
+    public TextMeshProUGUI pantalla;
     private GameObject controlador;
     string[] lines = new string[6];
     string[] A = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
@@ -112,6 +113,7 @@ public class Lector : MonoBehaviour
 
     public void Contador()
     {
+        pantalla.text = "";
         //Debug.Log(grid.gameObject.transform.childCount);
         foreach (Transform child in grid.gameObject.transform)
         {
@@ -201,6 +203,7 @@ public class Lector : MonoBehaviour
     }
 
     private void compilador(string mensaje, string tipo){
+        
         if (tipo == "print"){
             mensaje = RemoveStringStart(mensaje, "print(");
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
@@ -403,8 +406,15 @@ public class Lector : MonoBehaviour
                 //Debug.Log("Las variables son correctas");
                 int pos1 = Array.IndexOf(animales, str1);
                 int pos2 = Array.IndexOf(animales, str2);
-                int suma = animalesValores[pos1] + animalesValores[pos2];
-                Debug.Log("La suma de " + str1 + " y de "+ str2 + " es igual a " +suma);
+                if (pos1 != pos2){
+                    int suma = animalesValores[pos1] + animalesValores[pos2];
+                    Debug.Log("La suma de " + str1 + " y de "+ str2 + " es igual a " +suma);
+                    pantalla.text += "La suma de " + str1 + " y de "+ str2 + " es igual a " +suma + " \n";
+                } else {
+                    //Debug.Log("Suma prohibida");
+                    pantalla.text += "Suma prohibida \n";
+                }
+                
 
             } else {
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
@@ -585,6 +595,7 @@ public class Lector : MonoBehaviour
                 int resta = animalesValores[pos1] - animalesValores[pos2];
                 animalesValores[0] = resta;
                 Debug.Log("La resta de " + str1 + " y de "+ str2 + " es igual a " +resta);
+                pantalla.text += "La resta de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
 
             } else {
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");

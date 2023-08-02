@@ -18,6 +18,9 @@ TagManager:
   - dispositivos
   - restar
   - variable
+  - doc
+  - tablero
+  - mapItem
   layers:
   - Default
   - TransparentFX

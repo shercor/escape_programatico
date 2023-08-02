@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class DocRespawn : MonoBehaviour
 {
+
     int i = 0;
     string[] tipos = new string[] {"print", "bloque", "arreglo", "sumar", "animal", "arreglo"};
     public GameObject sumar;
+    public bool sumarB;
     void Start()
     {
         // Comenzamos el conteo de los hijos directos del objeto raíz
+        sumarB = false;
         ContarHijosDirectos(transform);
+        
     }
 
     void Update(){
@@ -20,7 +24,7 @@ public class DocRespawn : MonoBehaviour
     void ContarHijosDirectos(Transform objeto)
     {
         int cantidadHijosDirectos = objeto.childCount;
-        if (objeto.tag == "slot"){
+        if (objeto.tag == "slot" ){
                 if (cantidadHijosDirectos == 0){
                     Spawnear(i);
                 } else if (cantidadHijosDirectos == 2){
@@ -47,7 +51,7 @@ public class DocRespawn : MonoBehaviour
 
     private void Spawnear(int n){
         if (n == 0){
-            if (sumar != null)
+            if (sumar != null && sumarB == true)
             {
                 GameObject nuevoHijo = Instantiate(sumar, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
@@ -56,6 +60,14 @@ public class DocRespawn : MonoBehaviour
             {
                 Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
+        }
+    }
+
+    public void activarItem(string item){
+        if (item == "doc_sumar"){
+            Debug.Log("Se va a activar el DOC1: " + sumarB);
+            sumarB = true;
+            Debug.Log("Se activó DOC1: " + sumarB);
         }
     }
 }
