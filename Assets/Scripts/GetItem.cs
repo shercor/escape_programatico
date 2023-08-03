@@ -19,8 +19,9 @@ public class GetItem : MonoBehaviour
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
-        Debug.Log("Distancia al objeto Player: " + distanceToPlayer);
+        //Debug.Log("Distancia al objeto Player: " + distanceToPlayer);
         GameObject documentos = GameObject.FindGameObjectWithTag("doc");
+        GameObject PC = GameObject.FindGameObjectWithTag("PC");
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && distanceToPlayer < 1.5f)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -29,6 +30,7 @@ public class GetItem : MonoBehaviour
             {
                 Debug.Log("Item cogido");
                 documentos.transform.GetChild(1).gameObject.transform.GetChild(4).GetComponent<DocRespawn>().activarItem(item);
+                PC.transform.GetChild(1).gameObject.transform.GetChild(4).GetComponent<BlockRespawn>().activarItem(item);
                 Destroy(gameObject);
             }
         }

@@ -21,6 +21,8 @@ TagManager:
   - doc
   - tablero
   - mapItem
+  - block
+  - PC
   layers:
   - Default
   - TransparentFX

@@ -22,7 +22,10 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             // Code to execute when right-click is detected
             Debug.Log("Right-click detected!");
-            Destroy(this.gameObject, 0f);
+            if (this.tag == "doc"){
+                Destroy(this.gameObject, 0f);
+            }
+            
         }
     }
 
