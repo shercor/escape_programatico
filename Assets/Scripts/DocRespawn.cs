@@ -58,7 +58,7 @@ public class DocRespawn : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
         if (n == 1){
@@ -69,7 +69,7 @@ public class DocRespawn : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
         if (n == 2){
@@ -80,7 +80,7 @@ public class DocRespawn : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
             if (n == 3){
@@ -91,7 +91,7 @@ public class DocRespawn : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
     }

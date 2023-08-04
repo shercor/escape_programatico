@@ -23,6 +23,7 @@ TagManager:
   - mapItem
   - block
   - PC
+  - Spawner
   layers:
   - Default
   - TransparentFX

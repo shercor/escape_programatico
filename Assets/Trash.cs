@@ -14,9 +14,7 @@ public class Trash : MonoBehaviour
     void Update()
     {
         int cantidadHijosDirectos = transform.childCount;
-        Debug.Log("Hijos basurero:" + cantidadHijosDirectos );
         if (transform.tag == "slot"){
-            Debug.Log("HEY");
                 if (cantidadHijosDirectos != 0){
                         Destroy(transform.gameObject.transform.GetChild(0).gameObject);
                 }

@@ -11,6 +11,8 @@ using System.Reflection;
 
 public class Lector : MonoBehaviour
 {
+    public GameObject spawner;
+    public GameObject PC;
     public Image grid;
     private int i;
     private string t1, t2, t3;
@@ -96,6 +98,7 @@ public class Lector : MonoBehaviour
     private string code = "Debug.Log(\"Hola xDXDXD\");";
     string tipo;
     bool vacio = false;
+    bool bloqueLlave = false;
     
 
     void Start()
@@ -113,6 +116,7 @@ public class Lector : MonoBehaviour
 
     public void Contador()
     {
+        
         pantalla.text = "";
         //Debug.Log(grid.gameObject.transform.childCount);
         foreach (Transform child in grid.gameObject.transform)
@@ -147,6 +151,12 @@ public class Lector : MonoBehaviour
                 //
                 i = 0;
                 j = 0;
+                if (pantalla.text == "7\n9\n2\n6\n0\n"){
+                    Debug.Log("CONSEGUIDO FELICIDADES");
+                    spawner = GameObject.FindWithTag("Spawner");
+                    Debug.Log("Hola");
+                    spawner.GetComponent<Spawner>().llave(PC.transform.position + new Vector3(2f,2f,0F));
+                }
                 return; //SE CORTA APENAS DETECTA UNA LINEA VACÍA, ARREGLAR
                 //print("-");
                 //i = 9;
@@ -155,13 +165,13 @@ public class Lector : MonoBehaviour
             i = i + 1;
             if (i == 6 && vacio == false){
                 i = 0;
-                Debug.Log(j + tipo);
+                //Debug.Log(j + tipo);
                 compilador(lines[j], tipo);
                 //Debug.Log("Siguiente");
                 lines[j] = "";
                 //break;  
                 j = j + 1;
-                Debug.Log(j);     
+                //Debug.Log(j);     
                 //ExecuteCode(code);
             }
             if (vacio == true){
@@ -173,11 +183,20 @@ public class Lector : MonoBehaviour
 
             if (j ==5){
                 j = 0;
+                if (pantalla.text == "7\n9\n2\n6\n0\n" && bloqueLlave == false){
+                    Debug.Log("CONSEGUIDO FELICIDADES");
+                    spawner = GameObject.FindWithTag("Spawner");
+                    Debug.Log("Hola");
+                    spawner.GetComponent<Spawner>().llave(PC.transform.position + new Vector3(2f,2f,0F));
+                    bloqueLlave = true;
+
+                }
                 return;
             }
             //i = i + 1;
             // Acceder a cada hijo y realizar las operaciones necesarias
         }
+        
         j = 0;
         //Debug.Log(i);
     }
@@ -409,7 +428,7 @@ public class Lector : MonoBehaviour
                 if (pos1 != pos2){
                     int suma = animalesValores[pos1] + animalesValores[pos2];
                     Debug.Log("La suma de " + str1 + " y de "+ str2 + " es igual a " +suma);
-                    pantalla.text += "La suma de " + str1 + " y de "+ str2 + " es igual a " +suma + " \n";
+                    pantalla.text += suma + "\n";
                 } else {
                     //Debug.Log("Suma prohibida");
                     pantalla.text += "Suma prohibida \n";
