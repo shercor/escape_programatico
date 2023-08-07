@@ -90,8 +90,8 @@ public class Lector : MonoBehaviour
     private static int perro = 5;
     string[] animales = {"mosca", "rata", "gato", "perro", "pez"};
     int[] animalesValores = {0, 2, 4, 5, 0};
-    string[] dispositivos = {"rojo", "azul", "verde"};
-    int[] dispositivosClaves = {5, 160, 1000};
+    string[] dispositivos = {"azul", "verde", "morado","amarillo", "rojo"};
+    int[] dispositivosClaves = {5, 20, 1000, 1, 37};
 
     int j = 0;
     string temp;
@@ -155,7 +155,7 @@ public class Lector : MonoBehaviour
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
                     Debug.Log("Hola");
-                    spawner.GetComponent<Spawner>().llave(PC.transform.position + new Vector3(2f,2f,0F));
+                    spawner.GetComponent<Spawner>().color(PC.transform.position + new Vector3(2f,2f,0F));
                 }
                 return; //SE CORTA APENAS DETECTA UNA LINEA VACÍA, ARREGLAR
                 //print("-");
@@ -187,7 +187,7 @@ public class Lector : MonoBehaviour
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
                     Debug.Log("Hola");
-                    spawner.GetComponent<Spawner>().llave(PC.transform.position + new Vector3(2f,2f,0F));
+                    spawner.GetComponent<Spawner>().color(PC.transform.position + new Vector3(2f,2f,0F));
                     bloqueLlave = true;
 
                 }

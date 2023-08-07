@@ -24,6 +24,11 @@ TagManager:
   - block
   - PC
   - Spawner
+  - azul
+  - verde
+  - morado
+  - rojo
+  - amarillo
   layers:
   - Default
   - TransparentFX

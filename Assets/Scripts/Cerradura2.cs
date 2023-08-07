@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Cerradura : MonoBehaviour
+public class Cerradura2 : MonoBehaviour
 {
     public TextMeshProUGUI T1,T2,T3,T4, mensaje;
     public GameObject spawner;
     public GameObject cofre;
-    public string num1,num2,num3,num4;
     public GameObject doc;
     string[] num = new string[] {"0","1","2","3","4","5","6","7","8","8","9"};
     int i,j,k,l, len1;
@@ -94,11 +93,11 @@ public class Cerradura : MonoBehaviour
     }
 
     public void verificar(){
-        if (T1.text == num1 && T2.text == num2 && T3.text == num3 && T4.text == num4 ){
+        if (T1.text == "3" && T2.text == "6" && T3.text == "8" && T4.text == "3" ){
             mensaje.text = "Cofre abierto";
             mensaje.color = Color.green;
             spawner = GameObject.FindWithTag("Spawner");
-            spawner.GetComponent<Spawner>().defTren(doc,cofre.transform.position);
+            //spawner.GetComponent<Spawner>().defTren(doc, cofre.transform.position);
             Destroy(cofre.gameObject, 2f);
             //spawner.GetComponent<Spawner>().llave(cofre.transform.position);
         } else {

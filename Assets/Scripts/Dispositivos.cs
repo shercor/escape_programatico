@@ -7,7 +7,7 @@ public class Dispositivos : MonoBehaviour
     // Start is called before the first frame update
     public bool[]  dispositivosB =  new bool[3];
     public string[] dispositivosS = new string[]{"baño", "cocina", "closet"};
-    string[] dispositivosN = new string[]{"rojo", "azul", "verde"};
+    string[] dispositivosN = new string[]{"azul", "verde", "morado", "amarillo", "rojo"};
     
     void Start()
     {
@@ -25,5 +25,8 @@ public class Dispositivos : MonoBehaviour
 
     public void abrir(int key){
         dispositivosB[key] = true;
+        string tag = dispositivosN[key];
+        GameObject puerta = GameObject.FindWithTag(tag);
+        puerta.SetActive(false);
     }
 }
