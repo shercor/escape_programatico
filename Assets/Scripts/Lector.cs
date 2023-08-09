@@ -240,6 +240,14 @@ public class Lector : MonoBehaviour
             } else {
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
+        } else if (tipo == "sumar2"){
+            mensaje = RemoveStringStart(mensaje, "sumar(");
+            if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                mensaje = RemoveStringEnd(mensaje, ")");
+                sumar2(mensaje);
+            } else {
+                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+            }
         } else if (tipo == "pro"){
             mensaje = RemoveStringStart(mensaje, "pro(");
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
@@ -267,14 +275,34 @@ public class Lector : MonoBehaviour
             //Debug.Log(mensaje);
             //Debug.Log(CompareBeginOfStringsWithSubstring(mensaje, "restar"));
             if (CompareBeginOfStringsWithSubstring(mensaje, "restar")){
+                mensaje = RemoveStringStart(mensaje, "restar(");
+                if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                    mensaje = RemoveStringEnd(mensaje, ")");
+                    //Debug.Log("Se van a restar: " + mensaje);
+                    restar(mensaje);
+                } else {
+                    Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+                }
             }
-            mensaje = RemoveStringStart(mensaje, "restar(");
-            if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
-                mensaje = RemoveStringEnd(mensaje, ")");
-                //Debug.Log("Se van a restar: " + mensaje);
-                restar(mensaje);
-            } else {
-                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+            if (CompareBeginOfStringsWithSubstring(mensaje, "sumar")){
+                mensaje = RemoveStringStart(mensaje, "sumar(");
+                if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                    mensaje = RemoveStringEnd(mensaje, ")");
+                    //Debug.Log("Se van a restar: " + mensaje);
+                    sumar2(mensaje);
+                } else {
+                    Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+                }
+            }
+            if (CompareBeginOfStringsWithSubstring(mensaje, "mult")){
+                mensaje = RemoveStringStart(mensaje, "mult(");
+                if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                    mensaje = RemoveStringEnd(mensaje, ")");
+                    //Debug.Log("Se van a restar: " + mensaje);
+                    mult(mensaje);
+                } else {
+                    Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+                }
             }
         }
         
@@ -347,13 +375,37 @@ public class Lector : MonoBehaviour
     //Printea todos los elementos de un String separados por comas
     private void SeparadorComa(string inputString){
         string[] substrings = inputString.Split(',');
+        int c = 0;
         foreach (string substring in substrings)
         {
+            if (c != 0){
+                pantalla.text += ",";
+            }
+            c =1;
+            int valor;
             //Debug.Log(substring);
             AnalisisComa(substring);
             Console.WriteLine(substring.Trim());
-        }
+            Debug.Log("Esta es la variable: " + substring.Trim());
+            bool aux1 = Array.Exists(animales, element => element.Equals(substring.Trim()));
+            bool aux2 = Array.Exists(dispositivos, element => element.Equals(substring.Trim()));
+            Debug.Log(aux1);
+            if (aux1){
+                //Debug.Log("Las variables son correctas");
+                int pos1 = Array.IndexOf(animales, substring.Trim());
+                valor = animalesValores[pos1];
+                Debug.Log("El valor de " + substring + " es: " + valor);
+                pantalla.text += valor;
+            } else if (aux2) {
+                //Debug.Log("Las variables son correctas");
+                int pos1 = Array.IndexOf(dispositivos, substring.Trim());
+                Debug.Log("El valor de " + substring + " es: " + dispositivos[pos1]);
+                pantalla.text += dispositivos[pos1];
+            }
+         }
+         pantalla.text += "\n";
     }
+
 
     private void AnalisisComa(string substring){
         if (AnalisisCorchetes(substring).Item1 == true){
@@ -615,6 +667,68 @@ public class Lector : MonoBehaviour
                 animalesValores[0] = resta;
                 Debug.Log("La resta de " + str1 + " y de "+ str2 + " es igual a " +resta);
                 pantalla.text += "La resta de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
+
+            } else {
+                Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
+            }
+
+
+        } else {
+            Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
+        }
+    }
+
+    private void sumar2(string mensaje){
+
+        if (contarComas(mensaje, 1)){
+            //Debug.Log("Hay una sola coma, se puede realizar la sumna");
+            Debug.Log(mensaje);
+            string str1, str2;
+            str1 = EliminarEspacios(SepararComas(mensaje).Item1);
+            str2 = EliminarEspacios(SepararComas(mensaje).Item2);
+            Debug.Log(str1);
+            Debug.Log(str2);
+            bool aux1 = Array.Exists(animales, element => element.Equals(str1));
+            bool aux2 = Array.Exists(animales, element => element.Equals(str2));
+            if (aux1 && aux2){
+                //Debug.Log("Las variables son correctas");
+                int pos1 = Array.IndexOf(animales, str1);
+                int pos2 = Array.IndexOf(animales, str2);
+                int resta = animalesValores[pos1] + animalesValores[pos2];
+                animalesValores[0] = resta;
+                Debug.Log("La sumaaa de " + str1 + " y de "+ str2 + " es igual a " +resta);
+                pantalla.text += "La sumaaaa de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
+
+            } else {
+                Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
+            }
+
+
+        } else {
+            Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
+        }
+    }
+
+     private void mult(string mensaje){
+
+        if (contarComas(mensaje, 1)){
+            //Debug.Log("Hay una sola coma, se puede realizar la sumna");
+            Debug.Log(mensaje);
+            string str1, str2;
+            str1 = EliminarEspacios(SepararComas(mensaje).Item1);
+            str2 = EliminarEspacios(SepararComas(mensaje).Item2);
+            Debug.Log(str1);
+            Debug.Log(str2);
+            bool aux1 = Array.Exists(animales, element => element.Equals(str1));
+            bool aux2 = Array.Exists(animales, element => element.Equals(str2));
+            if (aux1 && aux2){
+                //Debug.Log("Las variables son correctas");
+                int pos1 = Array.IndexOf(animales, str1);
+                int pos2 = Array.IndexOf(animales, str2);
+                int resta = animalesValores[pos1] * animalesValores[pos2];
+                animalesValores[0] = resta;
+                Debug.Log("El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta);
+                pantalla.text += "El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
 
             } else {
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");

@@ -29,6 +29,8 @@ TagManager:
   - morado
   - rojo
   - amarillo
+  - sumar2
+  - mult
   layers:
   - Default
   - TransparentFX

@@ -14,7 +14,9 @@ public class BlockRespawn : MonoBehaviour
     public GameObject color;
     public GameObject restar;
     public GameObject var;
-    private bool printB;
+    public GameObject sumar2;
+    public GameObject mult;
+    private bool printB = true;
     private bool bloqueB;
     private bool arregloB;
     private bool sumarB;
@@ -24,6 +26,8 @@ public class BlockRespawn : MonoBehaviour
     private bool colorB;
     private bool restarB;
     private bool varB;
+    private bool sumar2B;
+    private bool multB;
 
     void Start()
     {
@@ -67,9 +71,9 @@ public class BlockRespawn : MonoBehaviour
 
     private void Spawnear(int n){
         if (n == 0){
-            if (sumar != null && sumarB == true)
+            if (print != null && printB == true)
             {
-                GameObject nuevoHijo = Instantiate(sumar, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(print, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -143,6 +147,28 @@ public class BlockRespawn : MonoBehaviour
                 //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
+        if (n == 7){
+            if (sumar2 != null && sumar2B == true)
+            {
+                GameObject nuevoHijo = Instantiate(sumar2, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 8){
+            if (mult != null && multB == true)
+            {
+                GameObject nuevoHijo = Instantiate(mult, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
         return;   
     }
         /*
@@ -182,6 +208,12 @@ public class BlockRespawn : MonoBehaviour
         }
         if (item == "var"){
             varB = true;
+        }
+        if (item == "sumar2"){
+            sumar2B = true;
+        }
+        if (item == "mult"){
+            multB = true;
         }
     }
 }

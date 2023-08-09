@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8125614825744268508, guid: bbd2506809fe403419e621941d50fe13, type: 3}
       propertyPath: m_Name
-      value: Block Sumar
+      value: Block Mult
       objectReference: {fileID: 0}
     - target: {fileID: 8125614825744268509, guid: bbd2506809fe403419e621941d50fe13, type: 3}
       propertyPath: m_Sprite
@@ -112,4 +112,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af8342c6c3defc4f837ed61e61ce31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: sumar
+  item: mult
