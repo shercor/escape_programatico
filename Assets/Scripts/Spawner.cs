@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
         GameObject spawnedObject = Instantiate(objectToSpawn, pos, Quaternion.identity);
     }
 
-    public void defTren(GameObject doc, Vector3 pos){
+    public void spawnear(GameObject doc, Vector3 pos){
         Debug.Log("Hola mundo");
         Debug.Log(pos);
         GameObject spawnedObject = Instantiate(doc, pos, Quaternion.identity);

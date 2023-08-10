@@ -239,6 +239,18 @@ public class Lector : MonoBehaviour
                         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                     }
                     return;
+                } else if (CompareBeginOfStringsWithSubstring(mensaje,"restar(")){
+                    Debug.Log("Función Restar clásica");
+                    Debug.Log(mensaje);
+                    if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                        mensaje = RemoveStringStart(mensaje, "restar(");
+                        mensaje = RemoveStringEnd(mensaje, ")");
+                        Debug.Log(mensaje);
+                        sustraer(mensaje);
+                    } else {
+                        Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+                    }
+                    return;
                 } else {
                     blockPrint(mensaje);
                 }
@@ -498,6 +510,39 @@ public class Lector : MonoBehaviour
                 } else {
                     //Debug.Log("Suma prohibida");
                     pantalla.text += "Suma prohibida \n";
+                }
+                
+
+            } else {
+                Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
+            }
+
+
+        } else {
+            Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
+        }
+    }
+
+    private void sustraer(string mensaje){
+
+        if (contarComas(mensaje, 1)){
+            //Debug.Log("Hay una sola coma, se puede realizar la sumna");
+            string str1, str2;
+            str1 = EliminarEspacios(SepararComas(mensaje).Item1);
+            str2 = EliminarEspacios(SepararComas(mensaje).Item2);
+            bool aux1 = Array.Exists(animales, element => element.Equals(str1));
+            bool aux2 = Array.Exists(animales, element => element.Equals(str2));
+            if (aux1 && aux2){
+                //Debug.Log("Las variables son correctas");
+                int pos1 = Array.IndexOf(animales, str1);
+                int pos2 = Array.IndexOf(animales, str2);
+                if (pos1 != pos2){
+                    int suma = animalesValores[pos1] - animalesValores[pos2];
+                    Debug.Log("La resta de " + str1 + " y de "+ str2 + " es igual a " +suma);
+                    pantalla.text += suma + "\n";
+                } else {
+                    //Debug.Log("Suma prohibida");
+                    pantalla.text += "Resta prohibida \n";
                 }
                 
 

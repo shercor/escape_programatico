@@ -94,7 +94,7 @@ public class BlockRespawn : MonoBehaviour
                 //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
-        if (n == 2){
+        if (n == 4){
             if (restar != null && restarB == true)
             {
                 GameObject nuevoHijo = Instantiate(restar, transform.position, Quaternion.identity);
@@ -139,7 +139,7 @@ public class BlockRespawn : MonoBehaviour
                 //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
-        if (n == 4){
+        if (n == 2){
             if (sumar2 != null && sumar2B == true)
             {
                 GameObject nuevoHijo = Instantiate(sumar2, transform.position, Quaternion.identity);
@@ -158,7 +158,7 @@ public class BlockRespawn : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
         if (n == 1){

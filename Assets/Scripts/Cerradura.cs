@@ -9,7 +9,7 @@ public class Cerradura : MonoBehaviour
     public GameObject spawner;
     public GameObject cofre;
     public string num1,num2,num3,num4;
-    public GameObject doc;
+    public GameObject item;
     string[] num = new string[] {"0","1","2","3","4","5","6","7","8","8","9"};
     int i,j,k,l, len1;
     // Start is called before the first frame update
@@ -98,9 +98,8 @@ public class Cerradura : MonoBehaviour
             mensaje.text = "Cofre abierto";
             mensaje.color = Color.green;
             spawner = GameObject.FindWithTag("Spawner");
-            spawner.GetComponent<Spawner>().defTren(doc,cofre.transform.position);
+            spawner.GetComponent<Spawner>().spawnear(item,cofre.transform.position); // Se da GameObject a spawnear y ubicación en V3 donde spawnear
             Destroy(cofre.gameObject, 2f);
-            //spawner.GetComponent<Spawner>().llave(cofre.transform.position);
         } else {
             mensaje.text = "Cofre no se abre";
             mensaje.color = Color.red;
