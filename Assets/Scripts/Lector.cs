@@ -227,7 +227,21 @@ public class Lector : MonoBehaviour
             mensaje = RemoveStringStart(mensaje, "print(");
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
-                blockPrint(mensaje);
+                if (CompareBeginOfStringsWithSubstring(mensaje,"sumar(")){
+                    Debug.Log("Función Sumar clásica");
+                    Debug.Log(mensaje);
+                    if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                        mensaje = RemoveStringStart(mensaje, "sumar(");
+                        mensaje = RemoveStringEnd(mensaje, ")");
+                        Debug.Log(mensaje);
+                        sumar(mensaje);
+                    } else {
+                        Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+                    }
+                    return;
+                } else {
+                    blockPrint(mensaje);
+                }
             } else {
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }

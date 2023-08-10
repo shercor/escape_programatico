@@ -16,7 +16,9 @@ public class BlockRespawn : MonoBehaviour
     public GameObject var;
     public GameObject sumar2;
     public GameObject mult;
+    public GameObject parentesis;
     private bool printB = true;
+    private bool parentesisB = true;
     private bool bloqueB;
     private bool arregloB;
     private bool sumarB;
@@ -81,7 +83,7 @@ public class BlockRespawn : MonoBehaviour
                 //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
-        if (n == 1){
+        if (n == 7){
             if (var != null && varB == true)
             {
                 GameObject nuevoHijo = Instantiate(var, transform.position, Quaternion.identity);
@@ -114,17 +116,7 @@ public class BlockRespawn : MonoBehaviour
                 //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
-        if (n == 4){
-            if (pro != null && proB == true)
-            {
-                GameObject nuevoHijo = Instantiate(pro, transform.position, Quaternion.identity);
-                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
-            }
-            else
-            {
-                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
-            }
-        }
+
         if (n == 5){
             if (color != null && colorB == true)
             {
@@ -136,7 +128,7 @@ public class BlockRespawn : MonoBehaviour
                 //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
-        if (n == 6){
+        if (n == 8){
             if (llave != null && llaveB == true)
             {
                 GameObject nuevoHijo = Instantiate(llave, transform.position, Quaternion.identity);
@@ -147,7 +139,7 @@ public class BlockRespawn : MonoBehaviour
                 //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
-        if (n == 7){
+        if (n == 4){
             if (sumar2 != null && sumar2B == true)
             {
                 GameObject nuevoHijo = Instantiate(sumar2, transform.position, Quaternion.identity);
@@ -158,7 +150,7 @@ public class BlockRespawn : MonoBehaviour
                 //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
-        if (n == 8){
+        if (n == 6){
             if (mult != null && multB == true)
             {
                 GameObject nuevoHijo = Instantiate(mult, transform.position, Quaternion.identity);
@@ -167,6 +159,18 @@ public class BlockRespawn : MonoBehaviour
             else
             {
                 Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 1){
+            Debug.Log("Spaenwar parenteiss");
+            if (parentesis != null && parentesisB == true)
+            {
+                GameObject nuevoHijo = Instantiate(parentesis, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
         return;   
