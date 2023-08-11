@@ -10,7 +10,6 @@ public class DocRespawn : MonoBehaviour
     void Start()
     {
         // Comenzamos el conteo de los hijos directos del objeto raíz
-        sumarB = false;
         //ContarHijosDirectos(transform);
         
     }
@@ -53,6 +52,7 @@ public class DocRespawn : MonoBehaviour
         if (n == 0){
             if (sumar != null && sumarB == true)
             {
+                Debug.Log("Se va a spawnear Newton (Sumar)");
                 GameObject nuevoHijo = Instantiate(sumar, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
@@ -101,6 +101,8 @@ public class DocRespawn : MonoBehaviour
             Debug.Log("Se va a activar el DOC1: " + sumarB);
             sumarB = true;
             Debug.Log("Se activó DOC1: " + sumarB);
+            Debug.Log(sumar);
+            Debug.Log(sumarB);
         }
         if (item == "doc_tren1"){
             Debug.Log("Se va a activar el DOC1: " + tren1B);

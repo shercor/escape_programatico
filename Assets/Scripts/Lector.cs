@@ -22,6 +22,7 @@ public class Lector : MonoBehaviour
     public TextMeshProUGUI T3;
     public TextMeshProUGUI pantalla;
     private GameObject controlador;
+    public GameObject menos;
     string[] lines = new string[6];
     string[] A = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
     string[] B = new string[] {"AAA", "B", "334", "HOLA", "XD"};
@@ -90,8 +91,8 @@ public class Lector : MonoBehaviour
     private static int perro = 5;
     string[] animales = {"mosca", "rata", "gato", "perro", "pez"};
     int[] animalesValores = {0, 2, 4, 5, 0};
-    string[] dispositivos = {"azul", "verde", "morado","amarillo", "rojo"};
-    int[] dispositivosClaves = {5, 20, 1000, 1, 37};
+    string[] dispositivos = {"azul", "verde", "lila","rosa", "rojo"};
+    int[] dispositivosClaves = {5, 20, 6, 1000, 1};
 
     int j = 0;
     string temp;
@@ -99,6 +100,7 @@ public class Lector : MonoBehaviour
     string tipo;
     bool vacio = false;
     bool bloqueLlave = false;
+    bool bloqueMenos = false;
     
 
     void Start()
@@ -157,6 +159,13 @@ public class Lector : MonoBehaviour
                     Debug.Log("Hola");
                     spawner.GetComponent<Spawner>().color(PC.transform.position + new Vector3(2f,2f,0F));
                 }
+                if (pantalla.text == "9\n6\n0\n" && bloqueMenos == false){
+                    Debug.Log("CONSEGUIDO FELICIDADES");
+                    spawner = GameObject.FindWithTag("Spawner");
+                    Debug.Log("Hola");
+                    spawner.GetComponent<Spawner>().spawnear(menos, PC.transform.position + new Vector3(2f,2f,0F));
+                    bloqueMenos = true;
+                }
                 return; //SE CORTA APENAS DETECTA UNA LINEA VACÍA, ARREGLAR
                 //print("-");
                 //i = 9;
@@ -189,7 +198,13 @@ public class Lector : MonoBehaviour
                     Debug.Log("Hola");
                     spawner.GetComponent<Spawner>().color(PC.transform.position + new Vector3(2f,2f,0F));
                     bloqueLlave = true;
-
+                }
+                if (pantalla.text == "9\n6\n0\n" && bloqueMenos == false){
+                    Debug.Log("CONSEGUIDO FELICIDADES");
+                    spawner = GameObject.FindWithTag("Spawner");
+                    Debug.Log("Hola");
+                    spawner.GetComponent<Spawner>().spawnear(menos, PC.transform.position + new Vector3(2f,2f,0F));
+                    bloqueMenos = true;
                 }
                 return;
             }
@@ -227,11 +242,11 @@ public class Lector : MonoBehaviour
             mensaje = RemoveStringStart(mensaje, "print(");
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
-                if (CompareBeginOfStringsWithSubstring(mensaje,"sumar(")){
+                if (CompareBeginOfStringsWithSubstring(mensaje,"agua(")){
                     Debug.Log("Función Sumar clásica");
                     Debug.Log(mensaje);
                     if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
-                        mensaje = RemoveStringStart(mensaje, "sumar(");
+                        mensaje = RemoveStringStart(mensaje, "agua(");
                         mensaje = RemoveStringEnd(mensaje, ")");
                         Debug.Log(mensaje);
                         sumar(mensaje);
@@ -259,7 +274,7 @@ public class Lector : MonoBehaviour
             }
             
         } else if (tipo == "sumar"){
-            mensaje = RemoveStringStart(mensaje, "sumar(");
+            mensaje = RemoveStringStart(mensaje, "agua(");
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
                 sumar(mensaje);
@@ -267,7 +282,7 @@ public class Lector : MonoBehaviour
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
         } else if (tipo == "sumar2"){
-            mensaje = RemoveStringStart(mensaje, "sumar(");
+            mensaje = RemoveStringStart(mensaje, "agua(");
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
                 sumar2(mensaje);
@@ -310,8 +325,8 @@ public class Lector : MonoBehaviour
                     Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                 }
             }
-            if (CompareBeginOfStringsWithSubstring(mensaje, "sumar")){
-                mensaje = RemoveStringStart(mensaje, "sumar(");
+            if (CompareBeginOfStringsWithSubstring(mensaje, "agua")){
+                mensaje = RemoveStringStart(mensaje, "agua(");
                 if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                     mensaje = RemoveStringEnd(mensaje, ")");
                     //Debug.Log("Se van a restar: " + mensaje);

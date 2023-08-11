@@ -21,11 +21,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8125614825744268510, guid: bbd2506809fe403419e621941d50fe13, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.083145544
+      value: 0.02764589
       objectReference: {fileID: 0}
     - target: {fileID: 8125614825744268510, guid: bbd2506809fe403419e621941d50fe13, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.07606087
+      value: 0.02764589
       objectReference: {fileID: 0}
     - target: {fileID: 8125614825744268510, guid: bbd2506809fe403419e621941d50fe13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -98,7 +98,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.4829469, y: 3.4901037}
+  m_Size: {x: 14.05011, y: 14.05011}
   m_EdgeRadius: 0
 --- !u!114 &4865771109674609308
 MonoBehaviour:

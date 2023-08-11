@@ -18,7 +18,7 @@ public class BlockMessage : MonoBehaviour
     string[] arr = new string[] {",","[","]","(",")","'"," "};
     string[] num = new string[] {"1","2","3","4","5","6","7","8","8","9"};
     string[] animales = {"mosca","rata", "gato", "perro", "pez"}; 
-    string[] colores = {"azul","rojo","verde"}; 
+    string[] colores = {"azul","verde","lila","rosa","rojo"}; 
     string[] alphabet = new string[]
     {
         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
