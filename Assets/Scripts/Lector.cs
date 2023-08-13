@@ -101,6 +101,7 @@ public class Lector : MonoBehaviour
     bool vacio = false;
     bool bloqueLlave = false;
     bool bloqueMenos = false;
+    int iteracion = 0;
     
 
     void Start()
@@ -116,7 +117,7 @@ public class Lector : MonoBehaviour
 
     }
 
-    public void Contador()
+    public void Contador() //Procesa el contenido en los bloques
     {
         
         pantalla.text = "";
@@ -124,35 +125,21 @@ public class Lector : MonoBehaviour
         foreach (Transform child in grid.gameObject.transform)
         {
             if (i<9 && child.childCount != 0){
+                Debug.Log(i + "," + j + " Hijos: ->" +  child.childCount +  child.name);
                 Debug.Log(i);
                 if (i == 0){
                     
                     tipo = child.gameObject.transform.GetChild(0).tag;
                     Debug.Log(tipo);
                 }
-                //Debug.Log(child.name);
-                
-                //Debug.Log("El tag del bloque es: " + child.gameObject.transform.GetChild(0).tag);
-                
-                //Debug.Log("Bloque: " + i);
-                //Debug.Log(child.gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).name);
-                //Debug.Log(child.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).name);
-                //Debug.Log(child.gameObject.transform.GetChild(0).gameObject.transform.GetChild(2).name);
                 T1 = child.gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 T2 = child.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
                 T3 = child.gameObject.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-                //Debug.Log(T1.text);
-                //Debug.Log(T2.text);
-                //Debug.Log(T3.text);
-                //Debug.Log("" + T1.text+ "" + T2.text+ "" + T3.text);
                 temp = T1.text + T2.text + T3.text;
-                //Debug.Log(temp);
                 lines[j] = lines[j] + temp;
-                //Debug.Log("Frase de Linea " + j + ": " + lines[j]);
-            } else if (i == 0 && child.childCount == 0){
-                //
-                i = 0;
-                j = 0;
+            } else if (i == 0 && child.childCount == 0){ //CUIDADO
+                //i = 0;
+                //Debug.Log("SE VA A CORTAR TODO... " + i + "," +j + " Hijos: ->" +  child.childCount +  child.name);
                 if (pantalla.text == "7\n9\n2\n6\n0\n"){
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
@@ -166,10 +153,8 @@ public class Lector : MonoBehaviour
                     spawner.GetComponent<Spawner>().spawnear(menos, PC.transform.position + new Vector3(2f,2f,0F));
                     bloqueMenos = true;
                 }
-                return; //SE CORTA APENAS DETECTA UNA LINEA VACÍA, ARREGLAR
-                //print("-");
-                //i = 9;
-                vacio = true;
+                //return; //SE CORTA APENAS DETECTA UNA LINEA VACÍA, ARREGLAR
+                //vacio = true;
             }
             i = i + 1;
             if (i == 6 && vacio == false){
@@ -180,14 +165,13 @@ public class Lector : MonoBehaviour
                 lines[j] = "";
                 //break;  
                 j = j + 1;
-                //Debug.Log(j);     
-                //ExecuteCode(code);
             }
             if (vacio == true){
-                //Debug.Log("Entro al vacio");
                 lines[j] = "";
                 j = j + 1;
+                Debug.Log("Entro al vacio" + j);
                 i = 0;
+                vacio = false;
             }
 
             if (j ==5){
@@ -210,6 +194,7 @@ public class Lector : MonoBehaviour
             }
             //i = i + 1;
             // Acceder a cada hijo y realizar las operaciones necesarias
+            iteracion += 1;
         }
         
         j = 0;
@@ -240,6 +225,7 @@ public class Lector : MonoBehaviour
         
         if (tipo == "print"){
             mensaje = RemoveStringStart(mensaje, "print(");
+            //Debug.Log("MENSAJE ES: " + mensaje);
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
                 if (CompareBeginOfStringsWithSubstring(mensaje,"agua(")){
@@ -269,6 +255,8 @@ public class Lector : MonoBehaviour
                 } else {
                     blockPrint(mensaje);
                 }
+            } else if (mensaje == ""){
+                
             } else {
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }

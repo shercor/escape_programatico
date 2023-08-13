@@ -31,6 +31,7 @@ TagManager:
   - amarillo
   - sumar2
   - mult
+  - SOL
   layers:
   - Default
   - TransparentFX
