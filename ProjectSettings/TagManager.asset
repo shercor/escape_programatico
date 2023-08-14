@@ -32,6 +32,12 @@ TagManager:
   - sumar2
   - mult
   - SOL
+  - word
+  - igualmas
+  - letra
+  - printw
+  - num
+  - palabras
   layers:
   - Default
   - TransparentFX

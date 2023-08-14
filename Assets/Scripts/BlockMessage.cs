@@ -16,13 +16,14 @@ public class BlockMessage : MonoBehaviour
     string[] C1 = new string[] {" ", " "};
     string[] C2 = new string[] {")",","};
     string[] arr = new string[] {",","[","]","(",")","'"," "};
-    string[] num = new string[] {"1","2","3","4","5","6","7","8","8","9"};
+    string[] num = new string[] {"0","1","2","3","4"};
     string[] animales = {"mosca","rata", "gato", "perro", "pez"}; 
     string[] colores = {"azul","verde","lila","rosa","rojo"}; 
+    string[] palabras = {"pluma","mixto","fuego","polen","huevo"}; 
     string[] alphabet = new string[]
     {
-        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-        "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+        "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "
     };
     int i;
     int j;
@@ -91,6 +92,22 @@ public class BlockMessage : MonoBehaviour
             len1 = C1.Length;
             len3 = C2.Length;
             len2 = colores.Length;
+        }
+        if (this.tag == "letra"){
+            T2.text = alphabet[j];
+            len2 = alphabet.Length;
+        }
+        if (this.tag == "num"){
+            T2.text = num[j];
+            T3.text = C2[k];
+            len2 = num.Length;
+            len3 = C2.Length;
+        }
+        if (this.tag == "palabras"){
+            T2.text = palabras[j];
+            T3.text = C2[k];
+            len2 = palabras.Length;
+            len3 = C2.Length;
         }
         
     }
