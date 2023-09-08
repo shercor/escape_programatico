@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class CameraFollow : MonoBehaviour
     public float smoothTime = 0.2f; // Tiempo de suavizado (ajusta según tus preferencias)
     private Vector3 velocity = Vector3.zero;
     private float initialZPosition;
+    private PhotonView view;
 
+    private bool isMine;
     private void Start()
     {
         initialZPosition = transform.position.z;
@@ -16,6 +19,16 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
+        GameObject[] jugadores = GameObject.FindGameObjectsWithTag("Player");
+
+            foreach(GameObject jugador in jugadores)
+            {
+                isMine = jugador.GetComponent<PhotonView>().IsMine;
+                if (isMine){
+                    target = jugador.transform;
+                }
+                // Haz algo con el objeto del jugador
+            }
         // Obtiene la posición actual de la cámara
         Vector3 currentPosition = transform.position;
 
