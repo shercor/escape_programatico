@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
+using System.IO;
 
 public class Cerradura : MonoBehaviour
 {
     public TextMeshProUGUI T1,T2,T3,T4, mensaje;
     public GameObject spawner;
     public GameObject cofre;
+
+    private string nombre;
     public string num1,num2,num3,num4;
     public GameObject item;
     string[] num = new string[] {"0","1","2","3","4","5","6","7","8","8","9"};
     int i,j,k,l, len1;
+    private PhotonView view;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +30,7 @@ public class Cerradura : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        view = GetComponentInParent<PhotonView>();
         len1 = num.Length;
         T1.text = num[i];
         T2.text = num[j];
@@ -93,16 +99,49 @@ public class Cerradura : MonoBehaviour
         }
     }
 
-    public void verificar(){
+    public void verificar(){ //Verifica que la contraseña ingresada sea correcta. Si es así, destruye el cofre en todas las sesiones e instancia un documento
         if (T1.text == num1 && T2.text == num2 && T3.text == num3 && T4.text == num4 ){
             mensaje.text = "Cofre abierto";
             mensaje.color = Color.green;
-            spawner = GameObject.FindWithTag("Spawner");
-            spawner.GetComponent<Spawner>().spawnear(item,cofre.transform.position); // Se da GameObject a spawnear y ubicación en V3 donde spawnear
-            Destroy(cofre.gameObject, 2f);
+            view.RPC("DestruirObjeto", RpcTarget.All);
         } else {
             mensaje.text = "Cofre no se abre";
             mensaje.color = Color.red;
         }
+    }
+
+    [PunRPC]
+    void DestruirObjeto()
+    {
+        if (PhotonNetwork.IsMasterClient)
+            {
+                nombre = item.name;
+                Debug.Log(nombre);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems",nombre + " Online") , transform.parent.position, Quaternion.identity);
+                PhotonNetwork.Destroy(cofre.gameObject);
+            }
+            else
+            {
+                view.RPC("RequestMasterClientDestroy", RpcTarget.MasterClient);
+            }
+    }
+
+    [PunRPC]
+    void RequestMasterClientDestroy()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            nombre = item.name;
+            Debug.Log(nombre);
+            //"Doc Newton Online"
+            PhotonNetwork.Instantiate(Path.Combine("MapItems",nombre + " Online") , transform.parent.position, Quaternion.identity);
+            PhotonNetwork.Destroy(cofre.gameObject);
+        }
+    }
+
+    IEnumerator DelayedDestroy()
+    {
+        yield return new WaitForSeconds(2f);
+        PhotonNetwork.Destroy(cofre.gameObject);
     }
 }

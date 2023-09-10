@@ -51,6 +51,7 @@ public class GetItem : MonoBehaviour
         Debug.Log("Item cogido");
         documentos.transform.GetChild(1).gameObject.transform.GetChild(4).GetComponent<DocRespawn>().activarItem(item);
         PC.transform.GetChild(1).gameObject.transform.GetChild(4).GetComponent<BlockRespawn>().activarItem(item);
+        
         PhotonNetwork.Destroy(gameObject);
     }
 

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8125614825744268508, guid: bbd2506809fe403419e621941d50fe13, type: 3}
       propertyPath: m_Name
-      value: Doc Sumar
+      value: Doc Newton
       objectReference: {fileID: 0}
     - target: {fileID: 8125614825744268509, guid: bbd2506809fe403419e621941d50fe13, type: 3}
       propertyPath: m_Sprite
@@ -113,3 +113,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: doc_sumar
+--- !u!114 &3413091890805986325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6766568053251298404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

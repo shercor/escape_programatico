@@ -41,6 +41,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - <Update>g__DestruirObjeto|3_0
   - DestruirObjeto
+  - RequestMasterClientDestroy
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
