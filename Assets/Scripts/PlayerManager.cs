@@ -15,9 +15,13 @@ public class PlayerManager : MonoBehaviour
         Debug.Log(photonView.IsMine);
         if (photonView.IsMine){
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Player") , Vector3.zero, Quaternion.identity);
+            //PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Animal Online") , Vector3.zero + new Vector3(-6.7f , 6.7f, 0f), Quaternion.identity);
             Debug.Log("Pj instanciado para player: " + photonView.Owner);
         } else {
             Debug.Log("No se va a instanciar pj para "+ photonView.Owner);
+        }
+        if (PhotonNetwork.IsMasterClient){
+            PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Animal Online") , Vector3.zero + new Vector3(-6.7f , 6.7f, 0f), Quaternion.identity);
         }
     }
 
