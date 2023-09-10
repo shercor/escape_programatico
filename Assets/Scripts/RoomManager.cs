@@ -8,7 +8,7 @@ using System.IO;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
-
+    private PhotonView view;
     public static RoomManager Instance;
 
     void Awake(){
@@ -17,6 +17,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
             return;
         }
         DontDestroyOnLoad(gameObject); //Lo hace indestructible si es el único
+        view = GetComponent<PhotonView>();
         Instance = this;
     }
 
@@ -34,8 +35,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerManager") , Vector3.zero, Quaternion.identity);
         if(scene.buildIndex == 1){
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerManager") , Vector3.zero, Quaternion.identity);
+            if (view.IsMine){
+                //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerManager") , Vector3.zero, Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Sumar2 Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
+            }
+            
         }
     }
     void Start()
