@@ -181,6 +181,7 @@ public class Lector : MonoBehaviour
 
             if (j ==5){
                 j = 0;
+                // 7 9 6 0 2
                 if (pantalla.text == "0\n0\n0\n0\n0\n" && bloqueLlave == false){
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
@@ -190,11 +191,14 @@ public class Lector : MonoBehaviour
                     itemManager.GetComponent<ItemManager>().upColor();
                     bloqueLlave = true;
                 }
-                if (pantalla.text == "9\n6\n0\n" && bloqueMenos == false){
+                //9 6 0
+                if (pantalla.text == "0\n0\n0\n" && bloqueMenos == false){
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
                     Debug.Log("Hola");
-                    spawner.GetComponent<Spawner>().spawnear(menos, PC.transform.position + new Vector3(2f,2f,0F));
+                    //spawner.GetComponent<Spawner>().spawnear(menos, PC.transform.position + new Vector3(2f,2f,0F));
+                    itemManager = GameObject.FindWithTag("itemmanager");
+                    itemManager.GetComponent<ItemManager>().upMenos();
                     bloqueMenos = true;
                 }
                 return;
