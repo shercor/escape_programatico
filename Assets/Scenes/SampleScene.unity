@@ -15243,6 +15243,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 871634952}
     m_Modifications:
+    - target: {fileID: -3986814295911165143, guid: 9d49e05e87e0fa542b52fab8214e5f70, type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3118365198244946662, guid: 9d49e05e87e0fa542b52fab8214e5f70, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7787891844910504161, guid: 9d49e05e87e0fa542b52fab8214e5f70, type: 3}
       propertyPath: m_Name
       value: Cofre 2

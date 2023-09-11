@@ -23,6 +23,7 @@ public class Lector : MonoBehaviour
     public TextMeshProUGUI pantalla;
     private GameObject controlador;
     public GameObject menos;
+    public GameObject itemManager;
     string[] lines = new string[6];
     string[] A = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
     string[] B = new string[] {"AAA", "B", "334", "HOLA", "XD"};
@@ -145,6 +146,10 @@ public class Lector : MonoBehaviour
                     spawner = GameObject.FindWithTag("Spawner");
                     Debug.Log("Hola");
                     spawner.GetComponent<Spawner>().color(PC.transform.position + new Vector3(2f,2f,0F));
+                    itemManager = GameObject.FindWithTag("itemManager");
+                    itemManager.GetComponent<ItemManager>().upColor();
+                    bloqueLlave = true;
+
                 }
                 if (pantalla.text == "9\n6\n0\n" && bloqueMenos == false){
                     Debug.Log("CONSEGUIDO FELICIDADES");
@@ -176,11 +181,13 @@ public class Lector : MonoBehaviour
 
             if (j ==5){
                 j = 0;
-                if (pantalla.text == "7\n9\n2\n6\n0\n" && bloqueLlave == false){
+                if (pantalla.text == "0\n0\n0\n0\n0\n" && bloqueLlave == false){
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
                     Debug.Log("Hola");
-                    spawner.GetComponent<Spawner>().color(PC.transform.position + new Vector3(2f,2f,0F));
+                    //spawner.GetComponent<Spawner>().color(PC.transform.position + new Vector3(2f,2f,0F));
+                    itemManager = GameObject.FindWithTag("itemmanager");
+                    itemManager.GetComponent<ItemManager>().upColor();
                     bloqueLlave = true;
                 }
                 if (pantalla.text == "9\n6\n0\n" && bloqueMenos == false){

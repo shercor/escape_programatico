@@ -39,9 +39,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
         if(scene.buildIndex == 1){
             if (view.IsMine){
                 //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerManager") , Vector3.zero, Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","ItemManager") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Animal Online") , Vector3.zero + new Vector3(-6.7f , 6.7f, 0f), Quaternion.identity);
-                PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Sumar2 Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
-                PhotonNetwork.Instantiate(Path.Combine("MapItems","Cofre Animales Online") , Vector3.zero + new Vector3(0f , 7f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Sumar2 Online") , Vector3.zero + new Vector3(13f , 0f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Cofre Animales Online") , Vector3.zero + new Vector3(11f , 0f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Cofre Disney Online") , Vector3.zero + new Vector3(2f , -8f, 0f), Quaternion.identity);
             }
             

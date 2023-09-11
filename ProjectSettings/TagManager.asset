@@ -38,6 +38,7 @@ TagManager:
   - printw
   - num
   - palabras
+  - itemmanager
   layers:
   - Default
   - TransparentFX
