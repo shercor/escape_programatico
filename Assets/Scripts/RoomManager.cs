@@ -43,7 +43,14 @@ public class RoomManager : MonoBehaviourPunCallbacks
                 PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","ControladorDispositivos") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Animal Online") , Vector3.zero + new Vector3(-6.7f , 6.7f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Sumar2 Online") , Vector3.zero + new Vector3(13f , 0f, 0f), Quaternion.identity);
-                PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Var Online") , Vector3.zero + new Vector3(-9f , -3f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Var Online") , Vector3.zero + new Vector3(-7f , -6f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Block SOL Online") , Vector3.zero + new Vector3(2f , -2.5f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Restar Online") , Vector3.zero + new Vector3(4.9f , 9f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc Tren Online") , Vector3.zero + new Vector3(7.2f , 6.5f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc Barco Online") , Vector3.zero + new Vector3(-1f , -3f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL1 Online") , Vector3.zero + new Vector3(0f , -3f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL2 Online") , Vector3.zero + new Vector3(2f , 11.85f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL3 Online") , Vector3.zero + new Vector3(-7.5f , -0.5f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Cofre Animales Online") , Vector3.zero + new Vector3(11f , 0f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Cofre Disney Online") , Vector3.zero + new Vector3(2f , -8f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Cuestionario 1 Online") , Vector3.zero + new Vector3(-5f , 10f, 0f), Quaternion.identity);
