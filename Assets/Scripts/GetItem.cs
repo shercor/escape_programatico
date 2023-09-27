@@ -48,7 +48,7 @@ public class GetItem : MonoBehaviour
     {
         GameObject documentos = GameObject.FindGameObjectWithTag("doc");
         GameObject PC = GameObject.FindGameObjectWithTag("PC");
-        Debug.Log("Item cogido");
+        Debug.Log("Item cogido: " + item);
         documentos.transform.GetChild(1).gameObject.transform.GetChild(4).GetComponent<DocRespawn>().activarItem(item);
         PC.transform.GetChild(1).gameObject.transform.GetChild(4).GetComponent<BlockRespawn>().activarItem(item);
         

@@ -263,6 +263,18 @@ public class Lector : MonoBehaviour
                         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                     }
                     return;
+                } else if (CompareBeginOfStringsWithSubstring(mensaje,"mult(")){
+                    Debug.Log("Función Mult clásica");
+                    Debug.Log(mensaje);
+                    if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                        mensaje = RemoveStringStart(mensaje, "mult(");
+                        mensaje = RemoveStringEnd(mensaje, ")");
+                        Debug.Log(mensaje);
+                        pro(mensaje);
+                    } else {
+                        Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+                    }
+                    return;
                 } else {
                     blockPrint(mensaje);
                 }
@@ -288,11 +300,11 @@ public class Lector : MonoBehaviour
             } else {
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
-        } else if (tipo == "pro"){
-            mensaje = RemoveStringStart(mensaje, "pro(");
+        } else if (tipo == "mult"){
+            mensaje = RemoveStringStart(mensaje, "mult(");
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
-                pro(mensaje);
+                mult(mensaje);
             } else {
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
@@ -619,25 +631,26 @@ public class Lector : MonoBehaviour
 
     private void pro(string mensaje){
 
-        if (contarComas(mensaje, 2)){
-            //Debug.Log("Hay 2 comas, se puede realizar el producto y asignación");
-            string str1, str2, str3;
-            str1 = EliminarEspacios(SepararComas2(mensaje).Item1);
-            str2 = EliminarEspacios(SepararComas2(mensaje).Item2);
-            str3 = EliminarEspacios(SepararComas2(mensaje).Item3);
-            bool aux1;
-            if (str1 == "pez"){
-                aux1 = true;
-            } else {
-                aux1 = false;
-            }
+        if (contarComas(mensaje, 1)){
+            //Debug.Log("Hay una sola coma, se puede realizar la sumna");
+            string str1, str2;
+            str1 = EliminarEspacios(SepararComas(mensaje).Item1);
+            str2 = EliminarEspacios(SepararComas(mensaje).Item2);
+            bool aux1 = Array.Exists(animales, element => element.Equals(str1));
             bool aux2 = Array.Exists(animales, element => element.Equals(str2));
-            bool aux3 = Array.Exists(animales, element => element.Equals(str3));
-            if (aux1 && aux2 && aux3){
+            if (aux1 && aux2){
+                //Debug.Log("Las variables son correctas");
+                int pos1 = Array.IndexOf(animales, str1);
                 int pos2 = Array.IndexOf(animales, str2);
-                int pos3 = Array.IndexOf(animales, str3);
-                animalesValores[4] = animalesValores[pos2] * animalesValores[pos3];
-                Debug.Log("El nuevo valor de PEZ es " + animalesValores[4]);
+                if (pos1 != pos2){
+                    int suma = animalesValores[pos1] * animalesValores[pos2];
+                    Debug.Log("El producto de " + str1 + " y de "+ str2 + " es igual a " +suma);
+                    pantalla.text += suma + "\n";
+                } else {
+                    //Debug.Log("Suma prohibida");
+                    pantalla.text += "Producto prohibido \n";
+                }
+                
 
             } else {
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
