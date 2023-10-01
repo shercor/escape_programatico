@@ -275,6 +275,18 @@ public class Lector : MonoBehaviour
                         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                     }
                     return;
+                } else if (CompareBeginOfStringsWithSubstring(mensaje,"SOL(")){
+                    Debug.Log("Función SOL");
+                    Debug.Log(mensaje);
+                    if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                        mensaje = RemoveStringStart(mensaje, "SOL(");
+                        mensaje = RemoveStringEnd(mensaje, ")");
+                        Debug.Log(mensaje);
+                        SOL(mensaje);
+                    } else {
+                        Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+                    }
+                    return;
                 } else {
                     blockPrint(mensaje);
                 }
@@ -313,6 +325,14 @@ public class Lector : MonoBehaviour
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
                 llave(mensaje);
+            } else {
+                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+            }
+        } else if (tipo == "SOL"){
+            mensaje = RemoveStringStart(mensaje, "SOL(");
+            if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+                mensaje = RemoveStringEnd(mensaje, ")");
+                SOL(mensaje);
             } else {
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
@@ -815,6 +835,52 @@ public class Lector : MonoBehaviour
                 animalesValores[0] = resta;
                 Debug.Log("El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta);
                 pantalla.text += "El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
+
+            } else {
+                Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
+            }
+
+
+        } else {
+            Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
+        }
+    }
+
+         private void SOL(string mensaje){
+
+        if (contarComas(mensaje, 2)){
+            //Debug.Log("Hay 2 comas, se puede realizar la operación SOL");
+            Debug.Log(mensaje);
+            string str1, str2, str3;
+            str1 = EliminarEspacios(SepararComas2(mensaje).Item1);
+            str2 = EliminarEspacios(SepararComas2(mensaje).Item2);
+            str3 = EliminarEspacios(SepararComas2(mensaje).Item3);
+            Debug.Log(str1);
+            Debug.Log(str2);
+            Debug.Log(str3);
+            bool aux1 = Array.Exists(animales, element => element.Equals(str1));
+            bool aux2 = Array.Exists(dispositivos, element => element.Equals(str2));
+            bool aux3 = Array.Exists(animales, element => element.Equals(str3));
+            if (aux1 && aux2 && aux3){
+                Debug.Log(str1);
+                Debug.Log(str2);
+                Debug.Log(str3);
+                mensaje = "False";
+                int pos1 = Array.IndexOf(animales, str1);
+                int pos3 = Array.IndexOf(animales, str3);
+                int y =  animalesValores[pos3];
+                int x = animalesValores[pos1];
+                Debug.Log(y);
+                Debug.Log(x);
+                if (y == 6 * x * x && str2 == "verde"){
+                    Debug.Log("Muy bien :D");
+                }
+                // int pos1 = Array.IndexOf(animales, str1);
+                // int pos3 = Array.IndexOf(animales, str3);
+                // int resta = animalesValores[pos1] * animalesValores[pos2];
+                // animalesValores[0] = resta;
+                // Debug.Log("El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta);
+                // pantalla.text += "El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
 
             } else {
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");

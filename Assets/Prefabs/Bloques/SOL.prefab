@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 5732821434553692367}
   m_Layer: 5
   m_Name: SOL
-  m_TagString: sumar2
+  m_TagString: SOL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

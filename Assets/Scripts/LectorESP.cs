@@ -192,6 +192,7 @@ public class LectorESP : MonoBehaviour
                     spawner.GetComponent<Spawner>().spawnear(menos, PC.transform.position + new Vector3(2f,2f,0F));
                     bloqueMenos = true;
                 }
+                pantalla.text = word;
                 Debug.Log("FINAL: " + word);
                 if (word == "fenix"){
                     Debug.Log("FELICIDADES, HAS SUPERADO EL ACERTIJO");

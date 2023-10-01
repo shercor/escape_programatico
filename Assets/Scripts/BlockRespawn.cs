@@ -17,6 +17,7 @@ public class BlockRespawn : MonoBehaviour
     public GameObject sumar2;
     public GameObject mult;
     public GameObject parentesis;
+    public GameObject sol;
     private bool printB = true;
     private bool parentesisB = true;
     private bool bloqueB;
@@ -30,6 +31,7 @@ public class BlockRespawn : MonoBehaviour
     private bool varB;
     private bool sumar2B;
     private bool multB;
+    private bool solB;
 
     void Start()
     {
@@ -162,10 +164,21 @@ public class BlockRespawn : MonoBehaviour
             }
         }
         if (n == 1){
-            Debug.Log("Spaenwar parenteiss");
             if (parentesis != null && parentesisB == true)
             {
                 GameObject nuevoHijo = Instantiate(parentesis, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 9){
+            Debug.Log("Spaenwar sol");
+            if (sol != null && solB == true)
+            {
+                GameObject nuevoHijo = Instantiate(sol, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -218,6 +231,9 @@ public class BlockRespawn : MonoBehaviour
         }
         if (item == "mult"){
             multB = true;
+        }
+        if (item == "sol"){
+            solB = true;
         }
     }
 }
