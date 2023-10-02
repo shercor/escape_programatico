@@ -33,11 +33,25 @@ public class Dispositivos : MonoBehaviour
         // puerta.SetActive(false);
     }
 
+    public void abrirSalida(){
+        view.RPC("Salir", RpcTarget.All);
+        // dispositivosB[key] = true;
+        // string tag = dispositivosN[key];
+        // GameObject puerta = GameObject.FindWithTag(tag);
+        // puerta.SetActive(false);
+    }
+
     [PunRPC]
     public void AbrirPuertas(int key){
         dispositivosB[key] = true;
         string tag = dispositivosN[key];
         GameObject puerta = GameObject.FindWithTag(tag);
+        puerta.SetActive(false);
+    }
+
+    [PunRPC]
+    public void Salir(){
+        GameObject puerta = GameObject.FindWithTag("salida");
         puerta.SetActive(false);
     }
 }

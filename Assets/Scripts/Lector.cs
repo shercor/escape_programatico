@@ -861,6 +861,7 @@ public class Lector : MonoBehaviour
             bool aux1 = Array.Exists(animales, element => element.Equals(str1));
             bool aux2 = Array.Exists(dispositivos, element => element.Equals(str2));
             bool aux3 = Array.Exists(animales, element => element.Equals(str3));
+            pantalla.text = "False";
             if (aux1 && aux2 && aux3){
                 Debug.Log(str1);
                 Debug.Log(str2);
@@ -874,6 +875,8 @@ public class Lector : MonoBehaviour
                 Debug.Log(x);
                 if (y == 6 * x * x && str2 == "verde"){
                     Debug.Log("Muy bien :D");
+                    controlador.GetComponent<Dispositivos>().abrirSalida();
+                    pantalla.text = "True";
                 }
                 // int pos1 = Array.IndexOf(animales, str1);
                 // int pos3 = Array.IndexOf(animales, str3);
@@ -884,6 +887,7 @@ public class Lector : MonoBehaviour
 
             } else {
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
+                pantalla.text = "Error: Algunas variables no son correctas o hay problemas en la sintaxis.";
             }
 
 

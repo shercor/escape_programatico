@@ -39,6 +39,8 @@ TagManager:
   - num
   - palabras
   - itemmanager
+  - salida
+  - panel
   layers:
   - Default
   - TransparentFX
