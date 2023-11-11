@@ -35,7 +35,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerManager") , Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerManager") , Vector3.zero + new Vector3(1f , 1f, 0f), Quaternion.identity);
         if(scene.buildIndex == 1){
             if (view.IsMine){
                 //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerManager") , Vector3.zero, Quaternion.identity);
@@ -51,9 +51,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL1 Online") , Vector3.zero + new Vector3(0f , -3f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL2 Online") , Vector3.zero + new Vector3(2f , 11.85f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL3 Online") , Vector3.zero + new Vector3(-7.5f , -0.5f, 0f), Quaternion.identity);
-                PhotonNetwork.Instantiate(Path.Combine("MapItems","Cofre Animales Online") , Vector3.zero + new Vector3(11f , 0f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Cofre Animales Online") , Vector3.zero + new Vector3(14.4f , -2.5f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Cofre Disney Online") , Vector3.zero + new Vector3(2f , -8f, 0f), Quaternion.identity);
-                PhotonNetwork.Instantiate(Path.Combine("MapItems","Cuestionario 1 Online") , Vector3.zero + new Vector3(-5f , 10f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Cuestionario 1 Online") , Vector3.zero + new Vector3(-0.99f , 13.03f, -2f), Quaternion.identity);
             }
             
         }

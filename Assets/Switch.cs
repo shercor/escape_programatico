@@ -56,8 +56,8 @@ public class Switch : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
             {
                 nombre = item.name;
-                Debug.Log(nombre);
-                PhotonNetwork.Instantiate(Path.Combine("MapItems",nombre + " Online") , transform.parent.position, Quaternion.identity);
+                Debug.Log("Spawn de: " + nombre);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems",nombre + " Online") , transform.parent.position + new Vector3(-0f , 0f, 2f), Quaternion.identity);
                 PhotonNetwork.Destroy(switch2.gameObject);
             }
             else
@@ -73,7 +73,7 @@ public class Switch : MonoBehaviour
         {
             nombre = item.name;
             Debug.Log(nombre);
-            PhotonNetwork.Instantiate(Path.Combine("MapItems",nombre + " Online") , transform.parent.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(Path.Combine("MapItems",nombre + " Online") , transform.parent.position + new Vector3(-0f , 0f, 2f), Quaternion.identity);
             PhotonNetwork.Destroy(switch2.gameObject);
         }
     }

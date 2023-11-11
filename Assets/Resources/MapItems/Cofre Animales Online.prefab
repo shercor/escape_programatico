@@ -7,9 +7,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2948442718199917221, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_Size.x
+      value: 2.1180444
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917221, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_Size.y
+      value: 2.6572962
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917221, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0061733723
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917221, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.06253177
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917221, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917221, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917221, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.56
+      objectReference: {fileID: 0}
     - target: {fileID: 2948442718199917222, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917222, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917222, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2948442718199917222, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,6 +87,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917223, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c74f299f08693f0419bb26f924570d07, type: 3}
     - target: {fileID: 2948442718199917240, guid: 55191a35af2c42046816d6a491d5d811, type: 3}
       propertyPath: m_Name
       value: Cofre Animales Online
