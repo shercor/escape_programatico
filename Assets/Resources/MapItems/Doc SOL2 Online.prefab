@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4865771109674609308, guid: 7cd39e5b663e4564d8877361db2d3fa2, type: 3}
+      propertyPath: item
+      value: doc_sol2
+      objectReference: {fileID: 0}
     - target: {fileID: 9124913884643168104, guid: 7cd39e5b663e4564d8877361db2d3fa2, type: 3}
       propertyPath: m_Name
       value: Doc SOL2 Online

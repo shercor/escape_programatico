@@ -5,8 +5,8 @@ public class DocRespawn : MonoBehaviour
 
     int i = 0;
     string[] tipos = new string[] {"print", "bloque", "arreglo", "sumar", "animal", "arreglo"};
-    public GameObject sumar, tren1, tren2, barco;
-    public bool sumarB, tren1B, tren2B, barcoB;
+    public GameObject sumar, tren1, tren2, barco, sol1, sol2, sol3, sol4;
+    public bool sumarB, tren1B, tren2B, barcoB, sol1B, sol2B, sol3B, sol4B;
     void Start()
     {
         // Comenzamos el conteo de los hijos directos del objeto raíz
@@ -83,10 +83,43 @@ public class DocRespawn : MonoBehaviour
                 //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
             }
         }
-            if (n == 3){
-            if (barco != null && barcoB == true)
+        if (n == 3){
+            if (sol1 != null && sol1B == true)
             {
-                GameObject nuevoHijo = Instantiate(barco, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(sol1, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 4){
+            if (sol2 != null && sol2B == true)
+            {
+                GameObject nuevoHijo = Instantiate(sol2, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 5){
+            if (sol3 != null && sol3B == true)
+            {
+                GameObject nuevoHijo = Instantiate(sol3, transform.position, Quaternion.identity);
+                nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
+            }
+            else
+            {
+                //Debug.LogError("Prefab no asignado. Por favor, asigna un prefab válido en el Inspector.");
+            }
+        }
+        if (n == 6){
+            if (sol4 != null && sol4B == true)
+            {
+                GameObject nuevoHijo = Instantiate(sol4, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -118,6 +151,26 @@ public class DocRespawn : MonoBehaviour
             Debug.Log("Se va a activar el DOC1: " + barcoB);
             barcoB = true;
             Debug.Log("Se activó DOC1: " + barcoB);
+        }
+        if (item == "doc_sol1"){
+            Debug.Log("Se va a activar el DOC: " + sol1B);
+            sol1B = true;
+            Debug.Log("Se activó DOC: " + sol1B);
+        }
+        if (item == "doc_sol2"){
+            Debug.Log("Se va a activar el DOC: " + sol2B);
+            sol2B = true;
+            Debug.Log("Se activó DOC: " + sol2B);
+        }
+        if (item == "doc_sol3"){
+            Debug.Log("Se va a activar el DOC: " + sol3B);
+            sol3B = true;
+            Debug.Log("Se activó DOC: " + sol3B);
+        }
+        if (item == "doc_sol4"){
+            Debug.Log("Se va a activar el DOC: " + sol4B);
+            sol4B = true;
+            Debug.Log("Se activó DOC: " + sol4B);
         }
     }
 }

@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject objectToSpawn;
     public GameObject colorPrefab;
+    public GameObject sol4docPrefab;
     public GameObject docTren;
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,12 @@ public class Spawner : MonoBehaviour
         Debug.Log("Hola mundo");
         Debug.Log(pos);
         GameObject spawnedObject = Instantiate(colorPrefab, pos, Quaternion.identity);
+    }
+
+    public void sol4(Vector3 pos){
+        Debug.Log("Hola mundo");
+        Debug.Log(pos);
+        GameObject spawnedObject = Instantiate(sol4docPrefab, pos, Quaternion.identity);
     }
 
     public void abrirPuerta(string tag){

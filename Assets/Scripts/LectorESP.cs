@@ -22,7 +22,8 @@ public class LectorESP : MonoBehaviour
     public TextMeshProUGUI T3;
     public TextMeshProUGUI pantalla;
     private GameObject controlador;
-    public GameObject menos;
+    public GameObject itemManager;
+    public GameObject menos, sol4;
     string[] lines = new string[6];
     string[] A = new string[] {"AAA", "B", "334", "HOLA", "XD","Vaca", "KAZUL", "KIARA", "KHLOE", "KYLIE"};
     string[] B = new string[] {"AAA", "B", "334", "HOLA", "XD"};
@@ -101,6 +102,7 @@ public class LectorESP : MonoBehaviour
     bool vacio = false;
     bool bloqueLlave = false;
     bool bloqueMenos = false;
+    bool docSol4 = false;
     int iteracion = 0;
     string word = "";
     
@@ -194,8 +196,13 @@ public class LectorESP : MonoBehaviour
                 }
                 pantalla.text = word;
                 Debug.Log("FINAL: " + word);
-                if (word == "fenix"){
+                if (word == "fenix"  && docSol4 == false){
+                    spawner = GameObject.FindWithTag("Spawner");
+                    //spawner.GetComponent<Spawner>().sol4(PC.transform.position + new Vector3(2f,2f,0F));
+                    itemManager = GameObject.FindWithTag("itemmanager");
+                    itemManager.GetComponent<ItemManager>().upDocSol4();
                     Debug.Log("FELICIDADES, HAS SUPERADO EL ACERTIJO");
+                    docSol4 = true;
                 }
                 return;
             }

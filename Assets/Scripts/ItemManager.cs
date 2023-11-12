@@ -9,6 +9,7 @@ public class ItemManager : MonoBehaviour
     private PhotonView view;
     private int color = 0;
     private int menos = 0;
+    private int sol4 = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,14 @@ public class ItemManager : MonoBehaviour
                 }
             //PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Color Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
         }
+        if (sol4 == 1){
+            sol4 = 2;
+            if (PhotonNetwork.IsMasterClient)
+                {
+                    PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL4 Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
+                }
+            //PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Color Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
+        }
     }
 
     public void upColor(){
@@ -45,6 +54,11 @@ public class ItemManager : MonoBehaviour
     public void upMenos(){
         Debug.Log("Se entró a Menos en el Item Manager");
         view.RPC("GenerarBloqueMenos", RpcTarget.All);
+    }
+
+    public void upDocSol4(){
+        Debug.Log("Se entró a Sol4 en el Item Manager");
+        view.RPC("GenerarDocSol4", RpcTarget.All);
     }
 
     [PunRPC]
@@ -61,5 +75,13 @@ public class ItemManager : MonoBehaviour
         Debug.Log("Se llamó a la función RPC en el Item Manager: " + menos);
         menos = 1;
         Debug.Log("Se aumentó el valor de color en el Item Manager: " + menos);
+    }
+
+    [PunRPC]
+    void GenerarDocSol4()
+    {
+        Debug.Log("Se llamó a la función RPC en el Item Manager: " + sol4);
+        sol4 = 1;
+        Debug.Log("Se aumentó el valor de color en el Item Manager: " + sol4);
     }
 }
