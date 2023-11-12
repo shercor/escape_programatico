@@ -5,8 +5,8 @@ public class DocRespawn : MonoBehaviour
 
     int i = 0;
     string[] tipos = new string[] {"print", "bloque", "arreglo", "sumar", "animal", "arreglo"};
-    public GameObject sumar, tren1, tren2, barco, sol1, sol2, sol3, sol4;
-    public bool sumarB, tren1B, tren2B, barcoB, sol1B, sol2B, sol3B, sol4B;
+    public GameObject sumar, tren1, tren2, barco, sol1, sol2, sol3, sol4, agua, helio, litio;
+    public bool sumarB, tren1B, tren2B, barcoB, sol1B, sol2B, sol3B, sol4B, aguaB, helioB, litioB;
     void Start()
     {
         // Comenzamos el conteo de los hijos directos del objeto raíz
@@ -50,10 +50,10 @@ public class DocRespawn : MonoBehaviour
 
     private void Spawnear(int n){
         if (n == 0){
-            if (sumar != null && sumarB == true)
+            if (agua != null && aguaB == true)
             {
                 Debug.Log("Se va a spawnear Newton (Sumar)");
-                GameObject nuevoHijo = Instantiate(sumar, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(agua, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -62,9 +62,9 @@ public class DocRespawn : MonoBehaviour
             }
         }
         if (n == 1){
-            if (tren1 != null && tren1B == true)
+            if (helio != null && helioB == true)
             {
-                GameObject nuevoHijo = Instantiate(tren1, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(helio, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -73,9 +73,9 @@ public class DocRespawn : MonoBehaviour
             }
         }
         if (n == 2){
-            if (tren2 != null && tren2B == true)
+            if (litio != null && litioB == true)
             {
-                GameObject nuevoHijo = Instantiate(tren2, transform.position, Quaternion.identity);
+                GameObject nuevoHijo = Instantiate(litio, transform.position, Quaternion.identity);
                 nuevoHijo.transform.parent = transform.GetChild(n).gameObject.transform;
             }
             else
@@ -130,21 +130,21 @@ public class DocRespawn : MonoBehaviour
     }
 
     public void activarItem(string item){
-        if (item == "doc_sumar"){
-            Debug.Log("Se va a activar el DOC1: " + sumarB);
-            sumarB = true;
-            Debug.Log("Se activó DOC1: " + sumarB);
+        if (item == "doc_agua"){
+            Debug.Log("Se va a activar el DOC1: " + aguaB);
+            aguaB = true;
+            Debug.Log("Se activó DOC1: " + aguaB);
             Debug.Log(sumar);
             Debug.Log(sumarB);
         }
-        if (item == "doc_tren1"){
+        if (item == "doc_helio"){
             Debug.Log("Se va a activar el DOC1: " + tren1B);
-            tren1B = true;
+            helioB = true;
             Debug.Log("Se activó DOC1: " + tren1B);
         }
-        if (item == "doc_tren2"){
+        if (item == "doc_litio"){
             Debug.Log("Se va a activar el DOC1: " + tren2B);
-            tren2B = true;
+            litioB = true;
             Debug.Log("Se activó DOC1: " + tren2B);
         }
         if (item == "doc_barco"){

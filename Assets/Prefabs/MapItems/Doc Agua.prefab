@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af8342c6c3defc4f837ed61e61ce31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: doc_sumar
+  item: doc_agua
 --- !u!114 &3413091890805986325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

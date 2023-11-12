@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Block SOL Online
       objectReference: {fileID: 0}
+    - target: {fileID: 9124913884643168105, guid: b7e46a570e928bf4188b20e46d669352, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9124913884643168106, guid: b7e46a570e928bf4188b20e46d669352, type: 3}
       propertyPath: m_RootOrder
       value: 0

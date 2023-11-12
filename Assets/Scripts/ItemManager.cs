@@ -24,7 +24,7 @@ public class ItemManager : MonoBehaviour
             color = 2;
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Color Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Color Online") , Vector3.zero + new Vector3(15.75f , 3.6f, 0f), Quaternion.identity);
             }
             //PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Color Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
         }
@@ -32,7 +32,7 @@ public class ItemManager : MonoBehaviour
             menos = 2;
             if (PhotonNetwork.IsMasterClient)
                 {
-                    PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Restar Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
+                    PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL2 Online") , Vector3.zero + new Vector3(12.4f , 11f, 0f), Quaternion.identity);
                 }
             //PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Color Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
         }
@@ -40,7 +40,7 @@ public class ItemManager : MonoBehaviour
             sol4 = 2;
             if (PhotonNetwork.IsMasterClient)
                 {
-                    PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL4 Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
+                    PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL4 Online") , Vector3.zero + new Vector3(-6.2f , 2.62f, 0f), Quaternion.identity);
                 }
             //PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Color Online") , Vector3.zero + new Vector3(0f , 0f, 0f), Quaternion.identity);
         }
