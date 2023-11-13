@@ -6,9 +6,9 @@ using Photon.Pun;
 public class Dispositivos : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool[]  dispositivosB =  new bool[3];
+    public bool[]  dispositivosB =  new bool[5];
     public string[] dispositivosS = new string[]{"baño", "cocina", "closet"};
-    string[] dispositivosN = new string[]{"azul", "verde", "morado", "amarillo", "rojo"};
+    string[] dispositivosN = new string[]{"azul", "verde", "lila", "rosa", "rojo"};
     private PhotonView view;
     
     void Start()
@@ -16,6 +16,8 @@ public class Dispositivos : MonoBehaviour
         dispositivosB[0] = false;
         dispositivosB[1] = false;
         dispositivosB[2] = false;
+        dispositivosB[3] = false;
+        dispositivosB[4] = false;
 
     }
 
@@ -43,7 +45,8 @@ public class Dispositivos : MonoBehaviour
 
     [PunRPC]
     public void AbrirPuertas(int key){
-        dispositivosB[key] = true;
+        Debug.Log("Key: " + key);
+        //dispositivosB[key] = true;
         string tag = dispositivosN[key];
         GameObject puerta = GameObject.FindWithTag(tag);
         puerta.SetActive(false);

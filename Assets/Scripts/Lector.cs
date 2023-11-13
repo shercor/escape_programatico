@@ -92,7 +92,7 @@ public class Lector : MonoBehaviour
     private static int perro = 5;
     string[] animales = {"mosca", "rata", "gato", "perro", "pez"};
     int[] animalesValores = {0, 2, 4, 5, 0};
-    string[] dispositivos = {"azul", "verde", "lila","rosa", "rojo"};
+    string[] dispositivos = {"'azul'", "'verde'", "'lila'","'rosa'", "'rojo'"};
     int[] dispositivosClaves = {5, 20, 6, 1000, 1};
 
     int j = 0;
@@ -251,11 +251,11 @@ public class Lector : MonoBehaviour
                         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                     }
                     return;
-                } else if (CompareBeginOfStringsWithSubstring(mensaje,"restar(")){
+                } else if (CompareBeginOfStringsWithSubstring(mensaje,"helio(")){
                     Debug.Log("Función Restar clásica");
                     Debug.Log(mensaje);
                     if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
-                        mensaje = RemoveStringStart(mensaje, "restar(");
+                        mensaje = RemoveStringStart(mensaje, "helio(");
                         mensaje = RemoveStringEnd(mensaje, ")");
                         Debug.Log(mensaje);
                         sustraer(mensaje);
@@ -263,11 +263,11 @@ public class Lector : MonoBehaviour
                         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                     }
                     return;
-                } else if (CompareBeginOfStringsWithSubstring(mensaje,"mult(")){
+                } else if (CompareBeginOfStringsWithSubstring(mensaje,"litio(")){
                     Debug.Log("Función Mult clásica");
                     Debug.Log(mensaje);
                     if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
-                        mensaje = RemoveStringStart(mensaje, "mult(");
+                        mensaje = RemoveStringStart(mensaje, "litio(");
                         mensaje = RemoveStringEnd(mensaje, ")");
                         Debug.Log(mensaje);
                         pro(mensaje);
@@ -313,7 +313,7 @@ public class Lector : MonoBehaviour
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
         } else if (tipo == "mult"){
-            mensaje = RemoveStringStart(mensaje, "mult(");
+            mensaje = RemoveStringStart(mensaje, "litio(");
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
                 mult(mensaje);
@@ -346,8 +346,8 @@ public class Lector : MonoBehaviour
             mensaje = RemoveStringStart(mensaje, "mosca=");
             //Debug.Log(mensaje);
             //Debug.Log(CompareBeginOfStringsWithSubstring(mensaje, "restar"));
-            if (CompareBeginOfStringsWithSubstring(mensaje, "restar")){
-                mensaje = RemoveStringStart(mensaje, "restar(");
+            if (CompareBeginOfStringsWithSubstring(mensaje, "helio")){
+                mensaje = RemoveStringStart(mensaje, "helio(");
                 if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                     mensaje = RemoveStringEnd(mensaje, ")");
                     //Debug.Log("Se van a restar: " + mensaje);
@@ -366,8 +366,8 @@ public class Lector : MonoBehaviour
                     Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                 }
             }
-            if (CompareBeginOfStringsWithSubstring(mensaje, "mult")){
-                mensaje = RemoveStringStart(mensaje, "mult(");
+            if (CompareBeginOfStringsWithSubstring(mensaje, "litio")){
+                mensaje = RemoveStringStart(mensaje, "litio(");
                 if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                     mensaje = RemoveStringEnd(mensaje, ")");
                     //Debug.Log("Se van a restar: " + mensaje);
@@ -652,7 +652,7 @@ public class Lector : MonoBehaviour
     private void pro(string mensaje){
 
         if (contarComas(mensaje, 1)){
-            //Debug.Log("Hay una sola coma, se puede realizar la sumna");
+            Debug.Log("Función Pro: Hay una sola coma, se puede realizar la multiplicación");
             string str1, str2;
             str1 = EliminarEspacios(SepararComas(mensaje).Item1);
             str2 = EliminarEspacios(SepararComas(mensaje).Item2);
@@ -662,14 +662,14 @@ public class Lector : MonoBehaviour
                 //Debug.Log("Las variables son correctas");
                 int pos1 = Array.IndexOf(animales, str1);
                 int pos2 = Array.IndexOf(animales, str2);
-                if (pos1 != pos2){
-                    int suma = animalesValores[pos1] * animalesValores[pos2];
-                    Debug.Log("El producto de " + str1 + " y de "+ str2 + " es igual a " +suma);
-                    pantalla.text += suma + "\n";
-                } else {
-                    //Debug.Log("Suma prohibida");
-                    pantalla.text += "Producto prohibido \n";
-                }
+                // if (pos1 != pos2){
+                int suma = animalesValores[pos1] * animalesValores[pos2];
+                Debug.Log("El producto de " + str1 + " y de "+ str2 + " es igual a " +suma);
+                pantalla.text += suma + "\n";
+                // } else {
+                //     //Debug.Log("Suma prohibida");
+                //     pantalla.text += "Producto prohibido \n";
+                // }
                 
 
             } else {
@@ -818,7 +818,7 @@ public class Lector : MonoBehaviour
      private void mult(string mensaje){
 
         if (contarComas(mensaje, 1)){
-            //Debug.Log("Hay una sola coma, se puede realizar la sumna");
+            Debug.Log("Hay una sola coma, se puede realizar la multiplicación");
             Debug.Log(mensaje);
             string str1, str2;
             str1 = EliminarEspacios(SepararComas(mensaje).Item1);
@@ -873,7 +873,7 @@ public class Lector : MonoBehaviour
                 int x = animalesValores[pos1];
                 Debug.Log(y);
                 Debug.Log(x);
-                if (y == 6 * x * x && str2 == "verde"){
+                if (y == 6 * x * x && str2 == "'verde'"){
                     Debug.Log("Muy bien :D");
                     controlador.GetComponent<Dispositivos>().abrirSalida();
                     pantalla.text = "True";

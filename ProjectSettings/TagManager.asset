@@ -41,6 +41,9 @@ TagManager:
   - itemmanager
   - salida
   - panel
+  - liila
+  - lila
+  - rosa
   layers:
   - Default
   - TransparentFX

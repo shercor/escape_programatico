@@ -18,7 +18,7 @@ public class BlockMessage : MonoBehaviour
     string[] arr = new string[] {",","[","]","(",")","'"," "};
     string[] num = new string[] {"0","1","2","3","4"};
     string[] animales = {"mosca","rata", "gato", "perro", "pez"}; 
-    string[] colores = {"azul","verde","lila","rosa","rojo"}; 
+    string[] colores = {"'azul'","'verde'","'lila'","'rosa'","'rojo'"}; 
     string[] palabras = {"pluma","mixto","fuego","polen","huevo"}; 
     string[] alphabet = new string[]
     {
@@ -104,7 +104,7 @@ public class BlockMessage : MonoBehaviour
             len3 = C2.Length;
         }
         if (this.tag == "palabras"){
-            T2.text = palabras[j];
+            T2.text = palabras[j] ;
             T3.text = C2[k];
             len2 = palabras.Length;
             len3 = C2.Length;
