@@ -87,6 +87,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2948442718199917220, guid: 4845ace7ee917b448952035472bc892d, type: 3}
+      propertyPath: cursorTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 925068dcd140883428e0c728d7a4ccf1, type: 3}
     - target: {fileID: 2948442718199917221, guid: 4845ace7ee917b448952035472bc892d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.48

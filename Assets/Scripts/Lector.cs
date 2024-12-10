@@ -103,6 +103,7 @@ public class Lector : MonoBehaviour
     bool bloqueLlave = false;
     bool bloqueMenos = false;
     int iteracion = 0;
+    bool linea = false;
     
 
     void Start()
@@ -126,6 +127,7 @@ public class Lector : MonoBehaviour
         foreach (Transform child in grid.gameObject.transform)
         {
             if (i<9 && child.childCount != 0){
+                
                 Debug.Log(i + "," + j + " Hijos: ->" +  child.childCount +  child.name);
                 Debug.Log(i);
                 if (i == 0){
@@ -151,7 +153,7 @@ public class Lector : MonoBehaviour
                     bloqueLlave = true;
 
                 }
-                if (pantalla.text == "9\n6\n0\n" && bloqueMenos == false){
+                if (pantalla.text == "1\n23423\n0\n" && bloqueMenos == false){
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
                     Debug.Log("Hola");
@@ -160,10 +162,15 @@ public class Lector : MonoBehaviour
                 }
                 //return; //SE CORTA APENAS DETECTA UNA LINEA VACÍA, ARREGLAR
                 //vacio = true;
+            } else {
             }
             i = i + 1;
             if (i == 6 && vacio == false){
                 i = 0;
+                Debug.Log("Linea " + j + " = " + lines[j]);
+                if (lines[j] != ""){
+                    linea = true;
+                }
                 //Debug.Log(j + tipo);
                 compilador(lines[j], tipo);
                 //Debug.Log("Siguiente");
@@ -182,20 +189,25 @@ public class Lector : MonoBehaviour
             if (j ==5){
                 j = 0;
                 // 7 9 6 0 2
-                if (pantalla.text == "0\n0\n0\n0\n0\n" && bloqueLlave == false){
+                // if (pantalla.text == "0\n" && bloqueLlave == false){
+                if (pantalla.text == "7\n9\n2\n6\n0\n" && bloqueLlave == false){
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
                     Debug.Log("Hola");
+                    pantalla.text = "¡Contraseña correcta! Vuelve hacia donde la encontraste \n";
                     //spawner.GetComponent<Spawner>().color(PC.transform.position + new Vector3(2f,2f,0F));
                     itemManager = GameObject.FindWithTag("itemmanager");
                     itemManager.GetComponent<ItemManager>().upColor();
                     bloqueLlave = true;
                 }
                 //9 6 0
-                if (pantalla.text == "0\n0\n0\n" && bloqueMenos == false){
+                //10 2 6 4 0
+                // if (pantalla.text == "0\n" && bloqueMenos == false){
+                if (pantalla.text == "10\n2\n6\n4\n0\n" && bloqueMenos == false){
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
                     Debug.Log("Hola");
+                    pantalla.text = "¡Contraseña correcta! Parece que algo ocurrió en otro lado \n";
                     //spawner.GetComponent<Spawner>().spawnear(menos, PC.transform.position + new Vector3(2f,2f,0F));
                     itemManager = GameObject.FindWithTag("itemmanager");
                     itemManager.GetComponent<ItemManager>().upMenos();
@@ -233,7 +245,8 @@ public class Lector : MonoBehaviour
     }
 
     private void compilador(string mensaje, string tipo){
-        
+        Debug.Log("Linea rellena? : " + linea);
+        //int cont_lineas = 0;
         if (tipo == "print"){
             mensaje = RemoveStringStart(mensaje, "print(");
             //Debug.Log("MENSAJE ES: " + mensaje);
@@ -248,6 +261,7 @@ public class Lector : MonoBehaviour
                         Debug.Log(mensaje);
                         sumar(mensaje);
                     } else {
+                        pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
                         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                     }
                     return;
@@ -260,6 +274,7 @@ public class Lector : MonoBehaviour
                         Debug.Log(mensaje);
                         sustraer(mensaje);
                     } else {
+                        pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
                         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                     }
                     return;
@@ -272,6 +287,7 @@ public class Lector : MonoBehaviour
                         Debug.Log(mensaje);
                         pro(mensaje);
                     } else {
+                        pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
                         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                     }
                     return;
@@ -284,15 +300,19 @@ public class Lector : MonoBehaviour
                         Debug.Log(mensaje);
                         SOL(mensaje);
                     } else {
+                        pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
                         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                     }
                     return;
+                } else if (CompareBeginOfStringsWithSubstring(mensaje,"llave(")) {
+                    pantalla.text = "Error: Llave() no retorna nada. Debes usar esta función adecuadamente \n";
                 } else {
                     blockPrint(mensaje);
                 }
             } else if (mensaje == ""){
                 
             } else {
+                pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
             
@@ -302,31 +322,44 @@ public class Lector : MonoBehaviour
                 mensaje = RemoveStringEnd(mensaje, ")");
                 sumar(mensaje);
             } else {
+                pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
-        } else if (tipo == "sumar2"){
-            mensaje = RemoveStringStart(mensaje, "agua(");
-            if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
-                mensaje = RemoveStringEnd(mensaje, ")");
-                sumar2(mensaje);
-            } else {
-                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
-            }
-        } else if (tipo == "mult"){
-            mensaje = RemoveStringStart(mensaje, "litio(");
-            if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
-                mensaje = RemoveStringEnd(mensaje, ")");
-                mult(mensaje);
-            } else {
-                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
-            }
+        // } 
+        
+        // // else if (tipo == "sumar2"){
+        // //     mensaje = RemoveStringStart(mensaje, "agua(");
+        // //     if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+        // //         mensaje = RemoveStringEnd(mensaje, ")");
+        // //         sumar2(mensaje);
+        // //     } else {
+        // //         pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo";
+        // //         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+        // //     }
+        // // }
+        //  else if (tipo == "mult"){
+        //     mensaje = RemoveStringStart(mensaje, "litio(");
+        //     pantalla.text = mensaje;
+        //     if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
+        //         mensaje = RemoveStringEnd(mensaje, ")");
+        //         mult(mensaje);
+        //     } else {
+        //         pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo";
+        //         Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+        //     }
         } else if (tipo == "llave"){
             mensaje = RemoveStringStart(mensaje, "llave(");
+            Debug.Log(mensaje);
+            Debug.Log("Linea: " + linea);
             if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                 mensaje = RemoveStringEnd(mensaje, ")");
                 llave(mensaje);
             } else {
-                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
+                // if (linea == true){
+                //     pantalla.text += "La sintaxis no es correcta, por favor intentar de nuevo" + mensaje + "\n";
+                //     linea = false;
+                // }
+                Debug.Log("La sintaxis no es correcta, por favor intentar de nuevoo");
             }
         } else if (tipo == "SOL"){
             mensaje = RemoveStringStart(mensaje, "SOL(");
@@ -334,6 +367,10 @@ public class Lector : MonoBehaviour
                 mensaje = RemoveStringEnd(mensaje, ")");
                 SOL(mensaje);
             } else {
+                // if (linea == true){
+                //     pantalla.text += "La sintaxis no es correcta, por favor intentar de nuevo" + mensaje + "\n";
+                //     linea = false;
+                // }
                 Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
             }
         } else if (tipo == "variable"){
@@ -353,32 +390,38 @@ public class Lector : MonoBehaviour
                     //Debug.Log("Se van a restar: " + mensaje);
                     restar(mensaje);
                 } else {
+                    pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
                     Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                 }
             }
-            if (CompareBeginOfStringsWithSubstring(mensaje, "agua")){
+            else if (CompareBeginOfStringsWithSubstring(mensaje, "agua")){
                 mensaje = RemoveStringStart(mensaje, "agua(");
                 if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                     mensaje = RemoveStringEnd(mensaje, ")");
                     //Debug.Log("Se van a restar: " + mensaje);
                     sumar2(mensaje);
                 } else {
+                    pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
                     Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                 }
             }
-            if (CompareBeginOfStringsWithSubstring(mensaje, "litio")){
+            else if (CompareBeginOfStringsWithSubstring(mensaje, "litio")){
                 mensaje = RemoveStringStart(mensaje, "litio(");
                 if (CompareEndOfStringsWithSubstring2(mensaje, ")")){
                     mensaje = RemoveStringEnd(mensaje, ")");
                     //Debug.Log("Se van a restar: " + mensaje);
                     mult(mensaje);
                 } else {
+                    pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
                     Debug.Log("La sintaxis no es correcta, por favor intentar de nuevo");
                 }
+            } else {
+                pantalla.text = "Error de Sintaxis: Asignación de variable inválida \n";
             }
         }
         
         else {
+            pantalla.text = "La sintaxis no es correcta, por favor intentar de nuevo \n";
             Debug.Log("No tenemos la orden de printear");
         }
     }
@@ -549,22 +592,24 @@ public class Lector : MonoBehaviour
                 //Debug.Log("Las variables son correctas");
                 int pos1 = Array.IndexOf(animales, str1);
                 int pos2 = Array.IndexOf(animales, str2);
-                if (pos1 != pos2){
-                    int suma = animalesValores[pos1] + animalesValores[pos2];
-                    Debug.Log("La suma de " + str1 + " y de "+ str2 + " es igual a " +suma);
-                    pantalla.text += suma + "\n";
-                } else {
-                    //Debug.Log("Suma prohibida");
-                    pantalla.text += "Suma prohibida \n";
-                }
+            //if (pos1 != pos2){
+                int suma = animalesValores[pos1] + animalesValores[pos2];
+                Debug.Log("La suma de " + str1 + " y de "+ str2 + " es igual a " +suma);
+                pantalla.text += suma + "\n";
+            //} else {
+                //Debug.Log("Suma prohibida");
+                //pantalla.text += "Suma prohibida \n";
+            //}
                 
 
             } else {
+                pantalla.text = "Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques \n";
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
             }
 
 
         } else {
+            pantalla.text = "La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros? \n";
             Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
         }
     }
@@ -582,22 +627,24 @@ public class Lector : MonoBehaviour
                 //Debug.Log("Las variables son correctas");
                 int pos1 = Array.IndexOf(animales, str1);
                 int pos2 = Array.IndexOf(animales, str2);
-                if (pos1 != pos2){
-                    int suma = animalesValores[pos1] - animalesValores[pos2];
-                    Debug.Log("La resta de " + str1 + " y de "+ str2 + " es igual a " +suma);
-                    pantalla.text += suma + "\n";
-                } else {
+                //if (pos1 != pos2){
+                int suma = animalesValores[pos1] - animalesValores[pos2];
+                Debug.Log("La resta de " + str1 + " y de "+ str2 + " es igual a " +suma);
+                pantalla.text += suma + "\n";
+                //} else {
                     //Debug.Log("Suma prohibida");
-                    pantalla.text += "Resta prohibida \n";
-                }
+                //     pantalla.text += "Resta prohibida \n";
+                // }
                 
 
             } else {
+                pantalla.text = "Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques \n";
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
             }
 
 
         } else {
+            pantalla.text = "La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros? \n";
             Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
         }
     }
@@ -673,13 +720,30 @@ public class Lector : MonoBehaviour
                 
 
             } else {
+                pantalla.text = "Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques \n";
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
             }
 
 
         } else {
+            pantalla.text = "La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros? \n";
             Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
         }
+    }
+
+    static (string, string) EliminarPrimeraComa(string input)
+    {
+        int primeraComaIndex = input.IndexOf(',');
+        if (primeraComaIndex != -1)
+        {
+            // Se encuentra al menos una coma
+            string parteIzquierda = input.Substring(0, primeraComaIndex);
+            string parteDerecha = input.Substring(primeraComaIndex + 1);
+
+            return (parteIzquierda, parteDerecha);
+        }
+        // No se encontraron comas en la cadena
+        return (input, string.Empty);
     }
 
     private (string, string, string) SepararComas2(string mensaje){
@@ -732,27 +796,171 @@ public class Lector : MonoBehaviour
                     int pos3 = Array.IndexOf(dispositivosClaves, key);
                     if (pos1 == pos3){
                         Debug.Log("Contraseña correcta, la clave de " + dispositivos[pos3] + " era " + key);
+                        pantalla.text += "Contraseña de " + dispositivos[pos3] + " correcta, se ha abierto la puerta \n";
                         //Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
                         controlador.GetComponent<Dispositivos>().abrir(pos1);
                         Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
                     }
                     else {
+                        pantalla.text += "Contraseña ingresada para " + dispositivos[pos1] + ":  " + key + " => INCORRECTA \n";
+                        //pantalla.text = "¡Denegado!";
                         Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
                     }
                 } else {
-                    Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
+                    pantalla.text += "Contraseña ingresada para " + dispositivos[pos1] + ":  " + key + " => INCORRECTA \n";
+                    Debug.Log("DENEGADO: No se ha introducido una combinación válida");
                 }
                 
 
             } else {
-                Debug.Log("DENEGADO: No se ha introducido una llave válida");
+                pantalla.text += "Error de sintaxis: Parámetros no válidos. \n";
+                Debug.Log("DENEGADO: No se ha introducido una combinación válida");
             }
 
 
-        } else {
+        } else if (contarComas(mensaje,2)) {
+            //superllave
+            string str1, str2, str3, str4;
+            str1 = EliminarEspacios(EliminarPrimeraComa(mensaje).Item1);
+            str2 = EliminarEspacios(EliminarPrimeraComa(mensaje).Item2);
+            Debug.Log("El mensaje es: " + mensaje);
+            if (contarComas(str2,1) && ( CompareBeginOfStringsWithSubstring(str2, "agua"))){
+                str2 = RemoveStringStart(str2, "agua(");
+                str2 = RemoveStringEnd(str2, ")");
+                str3 = EliminarEspacios(SepararComas(str2).Item1);
+                str4 = EliminarEspacios(SepararComas(str2).Item2);
+                Debug.Log(str3);
+                Debug.Log(str4);
+                //pantalla.text = str3 + " + " + str4;
+                bool aux1 = Array.Exists(animales, element => element.Equals(str3));
+                bool aux2 = Array.Exists(animales, element => element.Equals(str4));
+                bool aux3 = Array.Exists(dispositivos, element => element.Equals(str1));
+                if (aux1 && aux2 && aux3){
+                    int pos1 = Array.IndexOf(animales, str3);
+                    int pos2 = Array.IndexOf(animales, str4);
+                    int key1 = animalesValores[pos1];
+                    int key2 = animalesValores[pos2];
+                    int key = key1 + key2;
+                    int pos = Array.IndexOf(dispositivos, str1);
+                    Debug.Log("La clave ingresada es : "+ key);
+                    bool check1 = Array.Exists(dispositivosClaves, element => element.Equals(key));
+                    if (check1) {
+                        int pos3 = Array.IndexOf(dispositivosClaves, key);
+                        if (pos == pos3){
+                            Debug.Log("Contraseña correcta, la clave de " + dispositivos[pos3] + " era " + key);
+                            pantalla.text += "Contraseña de " + dispositivos[pos3] + " correcta, se ha abierto la puerta \n";
+                            //Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
+                            controlador.GetComponent<Dispositivos>().abrir(pos);
+                            Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
+                        }
+                        else {
+                            Debug.Log("Contraseña ingresada para " + dispositivos[pos3] + ":  " + key + " => INCORRECTA \n");
+                            //pantalla.text = "¡Denegado!";
+                            pantalla.text += "Contraseña ingresada para " + dispositivos[pos3] + ":  " + key + " => INCORRECTA \n";
+                            Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
+                        }
+                    } else {
+                            Debug.Log("Contraseña ingresada para " + dispositivos[pos] + ":  " + key + " => INCORRECTA");
+                            //pantalla.text = "¡Denegado!";
+                            pantalla.text += "Contraseña ingresada para " + dispositivos[pos] + ":  " + key + " => INCORRECTA \n";
+                            Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
+                    }
+                }
+            } else if (contarComas(str2,1) && ( CompareBeginOfStringsWithSubstring(str2, "litio"))){
+                str2 = RemoveStringStart(str2, "litio(");
+                str2 = RemoveStringEnd(str2, ")");
+                str3 = EliminarEspacios(SepararComas(str2).Item1);
+                str4 = EliminarEspacios(SepararComas(str2).Item2);
+                Debug.Log(str3);
+                Debug.Log(str4);
+                //pantalla.text = str3 + " + " + str4;
+                bool aux1 = Array.Exists(animales, element => element.Equals(str3));
+                bool aux2 = Array.Exists(animales, element => element.Equals(str4));
+                bool aux3 = Array.Exists(dispositivos, element => element.Equals(str1));
+                if (aux1 && aux2 && aux3){
+                    int pos1 = Array.IndexOf(animales, str3);
+                    int pos2 = Array.IndexOf(animales, str4);
+                    int key1 = animalesValores[pos1];
+                    int key2 = animalesValores[pos2];
+                    int key = key1 * key2;
+                    int pos = Array.IndexOf(dispositivos, str1);
+                    Debug.Log("La clave ingresada es : "+ key);
+                    bool check1 = Array.Exists(dispositivosClaves, element => element.Equals(key));
+                    if (check1) {
+                        int pos3 = Array.IndexOf(dispositivosClaves, key);
+                        if (pos == pos3){
+                            Debug.Log("Contraseña correcta, la clave de " + dispositivos[pos3] + " era " + key);
+                            pantalla.text += "Contraseña de " + dispositivos[pos3] + " correcta, se ha abierto la puerta \n";
+                            //Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
+                            controlador.GetComponent<Dispositivos>().abrir(pos);
+                            Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
+                        }
+                        else {
+                            Debug.Log("Contraseña ingresada para " + dispositivos[pos3] + ":  " + key + " => INCORRECTA");
+                            //pantalla.text = "¡Denegado!";
+                            pantalla.text += "Contraseña ingresada para " + dispositivos[pos3] + ":  " + key + " => INCORRECTA \n";
+                            Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
+                        }
+                    } else {
+                            Debug.Log("Contraseña ingresada para " + dispositivos[pos] + ":  " + key + " => INCORRECTA");
+                            //pantalla.text = "¡Denegado!";
+                            pantalla.text += "Contraseña ingresada para " + dispositivos[pos] + ":  " + key + " => INCORRECTA \n";
+                            Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
+                    }
+                }
+            } else if (contarComas(str2,1) && ( CompareBeginOfStringsWithSubstring(str2, "helio"))){
+                str2 = RemoveStringStart(str2, "helio(");
+                str2 = RemoveStringEnd(str2, ")");
+                str3 = EliminarEspacios(SepararComas(str2).Item1);
+                str4 = EliminarEspacios(SepararComas(str2).Item2);
+                Debug.Log(str3);
+                Debug.Log(str4);
+                //pantalla.text = str3 + " + " + str4;
+                bool aux1 = Array.Exists(animales, element => element.Equals(str3));
+                bool aux2 = Array.Exists(animales, element => element.Equals(str4));
+                bool aux3 = Array.Exists(dispositivos, element => element.Equals(str1));
+                if (aux1 && aux2 && aux3){
+                    int pos1 = Array.IndexOf(animales, str3);
+                    int pos2 = Array.IndexOf(animales, str4);
+                    int key1 = animalesValores[pos1];
+                    int key2 = animalesValores[pos2];
+                    int key = key1 - key2;
+                    int pos = Array.IndexOf(dispositivos, str1);
+                    Debug.Log("La clave ingresada es : "+ key);
+                    bool check1 = Array.Exists(dispositivosClaves, element => element.Equals(key));
+                    if (check1) {
+                        int pos3 = Array.IndexOf(dispositivosClaves, key);
+                        if (pos == pos3){
+                            Debug.Log("Contraseña correcta, la clave de " + dispositivos[pos3] + " era " + key);
+                            pantalla.text += "Contraseña de " + dispositivos[pos3] + " correcta, se ha abierto la puerta \n";
+                            //Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
+                            controlador.GetComponent<Dispositivos>().abrir(pos);
+                            Debug.Log(controlador.GetComponent<Dispositivos>().dispositivosS[pos3] + ": " + controlador.GetComponent<Dispositivos>().dispositivosB[pos3]);
+                        }
+                        else {
+                            Debug.Log("Contraseña ingresada para " + dispositivos[pos3] + ":  " + key + " => INCORRECTA");
+                            //pantalla.text = "¡Denegado!";
+                            pantalla.text += "Contraseña ingresada para " + dispositivos[pos3] + ":  " + key + " => INCORRECTA \n";
+                            Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
+                        }
+                    } else {
+                            Debug.Log("Contraseña ingresada para " + dispositivos[pos] + ":  " + key + " => INCORRECTA");
+                            //pantalla.text = "¡Denegado!";
+                            pantalla.text += "Contraseña ingresada para " + dispositivos[pos] + ":  " + key + " => INCORRECTA \n";
+                            Debug.Log("¡La combinación es incorrecta! Pruebe de nuevo");
+                    }
+                }
+            }
+            // Debug.Log(str1);
+            // Debug.Log(str2);
+            // pantalla.text = str2;
+            
+            
+        }else {
+            pantalla.text = "La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros? \n";
             Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
         }
-    }
+         }
 
 /*------------------------------------------------------------- Funciones auxiliares para la funcionalidad de LLAVE -------------------------------------------------------------*/
 
@@ -772,14 +980,16 @@ public class Lector : MonoBehaviour
                 int resta = animalesValores[pos1] - animalesValores[pos2];
                 animalesValores[0] = resta;
                 Debug.Log("La resta de " + str1 + " y de "+ str2 + " es igual a " +resta);
-                pantalla.text += "La resta de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
+                //pantalla.text += "La resta de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
 
             } else {
+                pantalla.text = "Error de Sintaxis. Intenta cambiar el contenido de los bloques \n";
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
             }
 
 
         } else {
+            pantalla.text = "La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros? \n";
             Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
         }
     }
@@ -803,14 +1013,16 @@ public class Lector : MonoBehaviour
                 int resta = animalesValores[pos1] + animalesValores[pos2];
                 animalesValores[0] = resta;
                 Debug.Log("La sumaaa de " + str1 + " y de "+ str2 + " es igual a " +resta);
-                pantalla.text += "La sumaaaa de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
+                //pantalla.text += "La sumaaaa de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
 
             } else {
+                pantalla.text = "Error de Sintaxis. Intenta cambiar el contenido de los bloques \n";
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
             }
 
 
         } else {
+            pantalla.text = "La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros? \n";
             Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
         }
     }
@@ -834,14 +1046,16 @@ public class Lector : MonoBehaviour
                 int resta = animalesValores[pos1] * animalesValores[pos2];
                 animalesValores[0] = resta;
                 Debug.Log("El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta);
-                pantalla.text += "El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
+                //pantalla.text += "El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
 
             } else {
+                pantalla.text = "Error de Sintaxis. Intenta cambiar el contenido de los bloques \n";
                 Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
             }
 
 
         } else {
+            pantalla.text = "La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros? \n";
             Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
         }
     }
@@ -861,7 +1075,7 @@ public class Lector : MonoBehaviour
             bool aux1 = Array.Exists(animales, element => element.Equals(str1));
             bool aux2 = Array.Exists(dispositivos, element => element.Equals(str2));
             bool aux3 = Array.Exists(animales, element => element.Equals(str3));
-            pantalla.text = "False";
+            //pantalla.text = "False";
             if (aux1 && aux2 && aux3){
                 Debug.Log(str1);
                 Debug.Log(str2);
@@ -875,8 +1089,12 @@ public class Lector : MonoBehaviour
                 Debug.Log(x);
                 if (y == 6 * x * x && str2 == "'verde'"){
                     Debug.Log("Muy bien :D");
+                    pantalla.text += "True";
                     controlador.GetComponent<Dispositivos>().abrirSalida();
-                    pantalla.text = "True";
+                    
+                } else {
+                    Debug.Log("Combinación incorrecta");
+                    pantalla.text += "False";
                 }
                 // int pos1 = Array.IndexOf(animales, str1);
                 // int pos3 = Array.IndexOf(animales, str3);
@@ -886,12 +1104,14 @@ public class Lector : MonoBehaviour
                 // pantalla.text += "El productoo de " + str1 + " y de "+ str2 + " es igual a " +resta+ " \n";
 
             } else {
-                Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques");
-                pantalla.text = "Error: Algunas variables no son correctas o hay problemas en la sintaxis.";
+                Debug.Log("Error: Alguna variable no existe o hay un problema en la sintaxis. Intenta cambiar el contenido de los bloques ");
+                pantalla.text = "Error: Algunas variables no son correctas o hay problemas en la sintaxis \n";
             }
 
 
         } else {
+            Debug.Log(mensaje);
+            pantalla.text = "Error de Sintaxis. Intenta cambiar el contenido de los bloques \n";
             Debug.Log("La sintaxis de la función es incorrecta. ¿Te habrás equivado en la cantidad de parámetros?");
         }
     }

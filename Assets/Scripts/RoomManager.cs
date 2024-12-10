@@ -46,8 +46,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Var Online") , Vector3.zero + new Vector3(-7.5f , -14f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Block SOL Online") , Vector3.zero + new Vector3(3.6f , -5.75f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Block Restar Online") , Vector3.zero + new Vector3(10.6f , 11.18f, 0f), Quaternion.identity);
-                PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc Helio Online") , Vector3.zero + new Vector3(13.5f , -15.3f, 0f), Quaternion.identity);
-                PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc Litio Online") , Vector3.zero + new Vector3(3f , -5.75f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc Litio Online") , Vector3.zero + new Vector3(13.5f , -15.3f, 0f), Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc Helio Online") , Vector3.zero + new Vector3(3f , -5.75f, 0f), Quaternion.identity);
                 //PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL1 Online") , Vector3.zero + new Vector3(1.5f , -7.5f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL1 Online") , Vector3.zero + new Vector3(16.39f , 12.81f, 0f), Quaternion.identity);
                 PhotonNetwork.Instantiate(Path.Combine("MapItems","Doc SOL3 Online") , Vector3.zero + new Vector3(-7.5f , -0.5f, 0f), Quaternion.identity);

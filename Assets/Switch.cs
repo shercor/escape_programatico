@@ -44,7 +44,7 @@ public class Switch : MonoBehaviour
             // Destroy(switch2.gameObject, 2f);
             view.RPC("DestruirObjeto", RpcTarget.All);
         } else {
-            mensaje.text = "Cofre no se abre";
+            mensaje.text = "Respuestas incorrectas, inténtalo de nuevo";
             mensaje.color = Color.red;
             Debug.Log("Nope :/");
         }

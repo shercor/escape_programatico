@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: doc_sumar
+  cursorTexture: {fileID: 2800000, guid: 925068dcd140883428e0c728d7a4ccf1, type: 3}
 --- !u!114 &3413091890805986325
 MonoBehaviour:
   m_ObjectHideFlags: 0

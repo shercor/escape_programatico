@@ -202,38 +202,52 @@ public class BlockRespawn : MonoBehaviour
 
 
         public void activarItem(string item){
+        GameObject camaraPrincipal = GameObject.FindGameObjectWithTag("MainCamera");
         if (item == "sumar"){
             sumarB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Agua!");
         }
         if (item == "bloque"){
             bloqueB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Bloque!");
         }
         if (item == "animal"){
             animalB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Animales!");
         }
         if (item == "pro"){
             proB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Litio!");
         }
         if (item == "llave"){
             llaveB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Llave!");
         }
         if (item == "color"){
             colorB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Colores!");
         }
         if (item == "restar"){
             restarB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Helio!");
         }
         if (item == "var"){
             varB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Variable!");
         }
         if (item == "sumar2"){
             sumar2B = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Agua!");
         }
         if (item == "mult"){
             multB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque Litio!");
         }
         if (item == "sol"){
             solB = true;
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el bloque SOL!");
         }
+        
+        
     }
 }

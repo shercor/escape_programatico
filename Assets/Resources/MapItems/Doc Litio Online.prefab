@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: item
       value: doc_litio
       objectReference: {fileID: 0}
+    - target: {fileID: 4865771109674609308, guid: 7cd39e5b663e4564d8877361db2d3fa2, type: 3}
+      propertyPath: cursorTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 925068dcd140883428e0c728d7a4ccf1, type: 3}
     - target: {fileID: 9124913884643168104, guid: 7cd39e5b663e4564d8877361db2d3fa2, type: 3}
       propertyPath: m_Name
       value: Doc Litio Online

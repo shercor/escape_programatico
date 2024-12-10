@@ -147,6 +147,7 @@ public class LectorESP : MonoBehaviour
                     Debug.Log("CONSEGUIDO FELICIDADES");
                     spawner = GameObject.FindWithTag("Spawner");
                     Debug.Log("Hola");
+                    //pantalla.text = "¡Contraseña correcta! Vuelve hacia donde la encontraste";
                     spawner.GetComponent<Spawner>().color(PC.transform.position + new Vector3(2f,2f,0F));
                 }
                 if (pantalla.text == "9\n6\n0\n" && bloqueMenos == false){

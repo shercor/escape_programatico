@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: llave
+  cursorTexture: {fileID: 2800000, guid: 925068dcd140883428e0c728d7a4ccf1, type: 3}
 --- !u!114 &8240430197741924757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +132,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

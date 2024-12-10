@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 704482118766380460, guid: 6e807b87f1e332f41b7ecb5ff0b99e86, type: 3}
+      propertyPath: cursorTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 925068dcd140883428e0c728d7a4ccf1, type: 3}
     - target: {fileID: 7046846848776637784, guid: 6e807b87f1e332f41b7ecb5ff0b99e86, type: 3}
       propertyPath: m_Name
       value: Doc Tren Online

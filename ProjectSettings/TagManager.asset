@@ -44,6 +44,8 @@ TagManager:
   - liila
   - lila
   - rosa
+  - alerta
+  - backalerta
   layers:
   - Default
   - TransparentFX

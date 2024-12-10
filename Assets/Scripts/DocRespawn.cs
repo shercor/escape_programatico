@@ -130,47 +130,56 @@ public class DocRespawn : MonoBehaviour
     }
 
     public void activarItem(string item){
+        GameObject camaraPrincipal = GameObject.FindGameObjectWithTag("MainCamera");
         if (item == "doc_agua"){
             Debug.Log("Se va a activar el DOC1: " + aguaB);
             aguaB = true;
             Debug.Log("Se activó DOC1: " + aguaB);
             Debug.Log(sumar);
             Debug.Log(sumarB);
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el Documento 'Agua'!");
         }
         if (item == "doc_helio"){
             Debug.Log("Se va a activar el DOC1: " + tren1B);
             helioB = true;
             Debug.Log("Se activó DOC1: " + tren1B);
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el Documento 'Helio'!");
         }
         if (item == "doc_litio"){
             Debug.Log("Se va a activar el DOC1: " + tren2B);
             litioB = true;
             Debug.Log("Se activó DOC1: " + tren2B);
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el Documento 'Litio'!");
         }
         if (item == "doc_barco"){
             Debug.Log("Se va a activar el DOC1: " + barcoB);
             barcoB = true;
             Debug.Log("Se activó DOC1: " + barcoB);
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el Documento 'Barco'!");
         }
         if (item == "doc_sol1"){
             Debug.Log("Se va a activar el DOC: " + sol1B);
             sol1B = true;
             Debug.Log("Se activó DOC: " + sol1B);
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el Documento 'SOL' 1!");
         }
         if (item == "doc_sol2"){
             Debug.Log("Se va a activar el DOC: " + sol2B);
             sol2B = true;
             Debug.Log("Se activó DOC: " + sol2B);
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el Documento 'SOL' 2!");
         }
         if (item == "doc_sol3"){
             Debug.Log("Se va a activar el DOC: " + sol3B);
             sol3B = true;
             Debug.Log("Se activó DOC: " + sol3B);
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el Documento 'SOL' 3!");
         }
         if (item == "doc_sol4"){
             Debug.Log("Se va a activar el DOC: " + sol4B);
             sol4B = true;
             Debug.Log("Se activó DOC: " + sol4B);
+            camaraPrincipal.GetComponent<Alerta>().MostrarAlerta("¡Han obtenido el Documento 'SOL' 4!");
         }
     }
 }

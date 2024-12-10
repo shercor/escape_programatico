@@ -13,7 +13,7 @@ public class Documentos : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             Debug.Log("K PRESIONADA");
             TogglePopup(); // Muestra u oculta el menú emergente si se hace clic en este objeto

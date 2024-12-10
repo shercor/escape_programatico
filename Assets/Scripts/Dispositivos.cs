@@ -48,6 +48,7 @@ public class Dispositivos : MonoBehaviour
         Debug.Log("Key: " + key);
         //dispositivosB[key] = true;
         string tag = dispositivosN[key];
+        Debug.Log("Tag abierto: " + tag);
         GameObject puerta = GameObject.FindWithTag(tag);
         puerta.SetActive(false);
     }
